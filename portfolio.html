@@ -74,8 +74,8 @@
 
     /* Image Styles */
     .image-container {
-      width: 15%; /* Adjust the width as desired */
-      margin: 5px; /* Add smaller margin */
+      width: 22%; /* Adjust the width as desired */
+      margin: 20px; /* Increase the margin to space out the images */
       position: relative;
       float: left;
     }
@@ -125,6 +125,11 @@
       display: table;
       clear: both;
     }
+
+    /* Container to wrap images and clear floats */
+    .image-container-wrap {
+      overflow: hidden;
+    }
   </style>
 </head>
 <body>
@@ -138,82 +143,91 @@
       <li><a href="#">Menu Item 1</a></li>
       <li><a href="#">Menu Item 2</a></li>
       <li><a href="#">Menu Item 3</a></li>
+      <li><a href="#">Menu Item 4</a></li>
+      <li><a href="#">Menu Item 5</a></li>
+      <li><a href="#">Menu Item 6</a></li>
+      <li><a href="#">Menu Item 7</a></li>
+      <li><a href="#">Menu Item 8</a></li>
+      <li><a href="#">Menu Item 9</a></li>
+      <li><a href="#">Menu Item 10</a></li>
       <!-- Add more menu items as needed -->
     </ul>
   </div>
 
-  <div class="image-container">
-    <a href="https://example.com/page1">
-      <img class="my-img" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" alt="image description">
-    </a>
-    <div class="caption">Caption 1</div>
-  </div>
-  <!-- Repeat the image containers for the remaining images -->
-  <div class="image-container">
-    <a href="https://example.com/page2">
-      <img class="my-img" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" alt="image description">
-    </a>
-    <div class="caption">Caption 2</div>
-  </div>
-  <div class="image-container">
-    <a href="https://example.com/page3">
-      <img class="my-img" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" alt="image description">
-    </a>
-    <div class="caption">Caption 3</div>
-  </div>
+  <div class="image-container-wrap">
     <div class="image-container">
-    <a href="https://example.com/page3">
-      <img class="my-img" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" alt="image description">
-    </a>
-    <div class="caption">Caption 3</div>
-  </div>
+      <a href="https://example.com/page1">
+        <img class="my-img" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" alt="image description">
+      </a>
+      <div class="caption">Caption 1</div>
+    </div>
+    <!-- Repeat the image containers for the remaining images -->
     <div class="image-container">
-    <a href="https://example.com/page3">
-      <img class="my-img" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" alt="image description">
-    </a>
-    <div class="caption">Caption 3</div>
-  </div>
+      <a href="https://example.com/page2">
+        <img class="my-img" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" alt="image description">
+      </a>
+      <div class="caption">Caption 2</div>
+    </div>
     <div class="image-container">
-    <a href="https://example.com/page3">
-      <img class="my-img" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" alt="image description">
-    </a>
-    <div class="caption">Caption 3</div>
-  </div>
+      <a href="https://example.com/page3">
+        <img class="my-img" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" alt="image description">
+      </a>
+      <div class="caption">Caption 3</div>
+    </div>
     <div class="image-container">
-    <a href="https://example.com/page3">
-      <img class="my-img" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" alt="image description">
-    </a>
-    <div class="caption">Caption 3</div>
-  </div>
+      <a href="https://example.com/page3">
+        <img class="my-img" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" alt="image description">
+      </a>
+      <div class="caption">Caption 4</div>
+    </div>
     <div class="image-container">
-    <a href="https://example.com/page3">
-      <img class="my-img" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" alt="image description">
-    </a>
-    <div class="caption">Caption 3</div>
-  </div>
+      <a href="https://example.com/page3">
+        <img class="my-img" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" alt="image description">
+      </a>
+      <div class="caption">Caption 5</div>
+    </div>
     <div class="image-container">
-    <a href="https://example.com/page3">
-      <img class="my-img" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" alt="image description">
-    </a>
-    <div class="caption">Caption 3</div>
-  </div>
+      <a href="https://example.com/page3">
+        <img class="my-img" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" alt="image description">
+      </a>
+      <div class="caption">Caption 6</div>
+    </div>
     <div class="image-container">
-    <a href="https://example.com/page3">
-      <img class="my-img" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" alt="image description">
-    </a>
-    <div class="caption">Caption 3</div>
-  </div>
+      <a href="https://example.com/page3">
+        <img class="my-img" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" alt="image description">
+      </a>
+      <div class="caption">Caption 7</div>
+    </div>
     <div class="image-container">
-    <a href="https://example.com/page3">
-      <img class="my-img" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" alt="image description">
-    </a>
-    <div class="caption">Caption 3</div>
-  </div>
+      <a href="https://example.com/page3">
+        <img class="my-img" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" alt="image description">
+      </a>
+      <div class="caption">Caption 8</div>
+    </div>
     <div class="image-container">
-    <a href="https://example.com/page3">
-      <img class="my-img" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" alt="image description">
-    </a>
-    <div class="caption">Caption 3</div>
+      <a href="https://example.com/page3">
+        <img class="my-img" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" alt="image description">
+      </a>
+      <div class="caption">Caption 9</div>
+    </div>
+    <div class="image-container">
+      <a href="https://example.com/page3">
+        <img class="my-img" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" alt="image description">
+      </a>
+      <div class="caption">Caption 10</div>
+    </div>
+    <div class="image-container">
+      <a href="https://example.com/page3">
+        <img class="my-img" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" alt="image description">
+      </a>
+      <div class="caption">Caption 11</div>
+    </div>
+    <div class="image-container">
+      <a href="https://example.com/page3">
+        <img class="my-img" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" alt="image description">
+      </a>
+      <div class="caption">Caption 12</div>
+    </div>
   </div>
   <!-- Add more image containers as needed -->
   <div class="clearfix-images"></div>
