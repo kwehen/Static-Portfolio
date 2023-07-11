@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Page</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+    /* Page Styles */
+    body {
+      background-color: #000;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Header Styles */
+    .header {
+      padding: 20px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 24px;
+      color: #fff; /* Set the text color to white */
+      text-align: center; /* Center the text */
+      margin: 0 auto; /* Center the header horizontally */
+      max-width: 800px; /* Set a maximum width for the header */
+    }
+
+    .header h1 {
+      margin-bottom: 10px;
+      font-size: 40px;
+      font-weight: bold;
+      line-height: 1;
+    }
+
+    .header p {
+      margin-bottom: 20px;
+      font-size: 18px;
+      font-weight: normal;
+      color: #aaa;
+    }
+
+    /* Sidebar Styles */
+    .sidebar {
+      width: 20%;
+      background-color: rgba(0, 0, 0, 0.7); /* Set the background-color to black with transparency */
+      float: left;
+      padding: 10px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px;
+      color: #fff; /* Set the text color to white */
+      margin-right: 5px; /* Add smaller right margin for sidebar */
+      height: calc(100vh - 40px); /* Set sidebar height to fill the viewport vertically */
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .sidebar li {
+      margin-bottom: 10px;
+    }
+
+    .sidebar a {
+      text-decoration: none;
+      color: #fff; /* Set the link color to white */
+      display: block;
+      padding: 5px;
+      border-radius: 0.5rem; /* Add border radius */
+    }
+
+    .sidebar a:hover {
+      background-color: #ddd;
+    }
+
+    /* Image Styles */
+    .image-container {
+      width: 15%; /* Adjust the width as desired */
+      margin: 5px; /* Add smaller margin */
+      position: relative;
+      float: left;
+    }
+
+    img.my-img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-width: 100%;
+      transition: all 300ms;
+      border-radius: 0.5rem; /* Add border radius */
+      cursor: pointer;
+      filter: grayscale(100%);
+    }
+
+    img.my-img:hover {
+      filter: grayscale(0%);
+    }
+
+    .caption {
+      text-align: center;
+      margin-top: 5px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px;
+      color: #fff;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 8px;
+      border-radius: 0.5rem; /* Add border radius */
+    }
+
+    .clearfix::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    /* Clearfix for the sidebar */
+    .clearfix-sidebar::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    /* Clearfix for the image containers */
+    .clearfix-images::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+  </style>
+</head>
+<body>
+  <section class="header">
+    <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">We invest in the world’s potential</h1>
+    <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">Here at Flowbite we focus on markets where technology, innovation, and capital can unlock long-term value and drive economic growth.</p>
+  </section>
+
+  <div class="sidebar">
+    <ul>
+      <li><a href="#">Menu Item 1</a></li>
+      <li><a href="#">Menu Item 2</a></li>
+      <li><a href="#">Menu Item 3</a></li>
+      <!-- Add more menu items as needed -->
+    </ul>
+  </div>
+
+  <div class="image-container">
+    <a href="https://example.com/page1">
+      <img class="my-img" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" alt="image description">
+    </a>
+    <div class="caption">Caption 1</div>
+  </div>
+  <!-- Repeat the image containers for the remaining images -->
+  <div class="image-container">
+    <a href="https://example.com/page2">
+      <img class="my-img" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" alt="image description">
+    </a>
+    <div class="caption">Caption 2</div>
+  </div>
+  <div class="image-container">
+    <a href="https://example.com/page3">
+      <img class="my-img" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" alt="image description">
+    </a>
+    <div class="caption">Caption 3</div>
+  </div>
+    <div class="image-container">
+    <a href="https://example.com/page3">
+      <img class="my-img" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" alt="image description">
+    </a>
+    <div class="caption">Caption 3</div>
+  </div>
+    <div class="image-container">
+    <a href="https://example.com/page3">
+      <img class="my-img" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" alt="image description">
+    </a>
+    <div class="caption">Caption 3</div>
+  </div>
+    <div class="image-container">
+    <a href="https://example.com/page3">
+      <img class="my-img" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" alt="image description">
+    </a>
+    <div class="caption">Caption 3</div>
+  </div>
+    <div class="image-container">
+    <a href="https://example.com/page3">
+      <img class="my-img" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" alt="image description">
+    </a>
+    <div class="caption">Caption 3</div>
+  </div>
+    <div class="image-container">
+    <a href="https://example.com/page3">
+      <img class="my-img" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" alt="image description">
+    </a>
+    <div class="caption">Caption 3</div>
+  </div>
+    <div class="image-container">
+    <a href="https://example.com/page3">
+      <img class="my-img" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" alt="image description">
+    </a>
+    <div class="caption">Caption 3</div>
+  </div>
+    <div class="image-container">
+    <a href="https://example.com/page3">
+      <img class="my-img" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" alt="image description">
+    </a>
+    <div class="caption">Caption 3</div>
+  </div>
+    <div class="image-container">
+    <a href="https://example.com/page3">
+      <img class="my-img" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" alt="image description">
+    </a>
+    <div class="caption">Caption 3</div>
+  </div>
+    <div class="image-container">
+    <a href="https://example.com/page3">
+      <img class="my-img" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/content/content-gallery-3.png" alt="image description">
+    </a>
+    <div class="caption">Caption 3</div>
+  </div>
+  <!-- Add more image containers as needed -->
+  <div class="clearfix-images"></div>
+</body>
+</html>
