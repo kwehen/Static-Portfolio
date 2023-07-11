@@ -1,10 +1,6 @@
 resource "aws_s3_bucket" "kwehen1" {
   bucket        = "kwehen1"
   force_destroy = true
-
-  tags = {
-    Name = "kwehen1"
-  }
 }
 
 resource "aws_s3_bucket_ownership_controls" "kwehen-controls" {
@@ -26,19 +22,22 @@ resource "aws_s3_bucket_public_access_block" "kwehen-access-block" {
 resource "aws_s3_object" "index" {
   bucket = aws_s3_bucket.kwehen1.id
   key    = "index.html"
-  source = "/Users/kwehen/Desktop/AWS/Static Portfolio/index.html"
+  source = "/Users/kwehen/Desktop/AWS/Static Portfolio//index.html"
+  content_type = "text/html"
 }
 
 resource "aws_s3_object" "error" {
   bucket = aws_s3_bucket.kwehen1.id
   key    = "404.html"
   source = "/Users/kwehen/Desktop/AWS/Static Portfolio/404.html"
+  content_type = "text/html"
 }
 
 resource "aws_s3_object" "portfolio" {
   bucket = aws_s3_bucket.kwehen1.id
   key = "portfolio.html"
   source = "/Users/kwehen/Desktop/AWS/Static Portfolio/portfolio.html"
+  content_type = "text/html"
 }
 
 resource "aws_s3_bucket_policy" "kwehen-policy" {
@@ -52,8 +51,8 @@ resource "aws_s3_bucket_policy" "kwehen-policy" {
       "Sid": "PublicReadGetObject",
       "Effect": "Allow",
       "Principal": "*",
-      "Action": ["s3:GetObject"],
-      "Resource": ["arn:aws:s3:::kwehen1/*"]
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::kwehen1/*"
     }
   ]
 }
@@ -74,4 +73,12 @@ resource "aws_s3_bucket_website_configuration" "kwehen-config" {
 
 output "bucket_domain_name" {
   value = aws_s3_bucket.kwehen1.website_endpoint
+}
+
+resource "aws_s3_bucket_server_side_encryption_configuration" "kwehen-encryption" {
+  bucket = aws_s3_bucket.kwehen1.id
+
+  rule {
+    bucket_key_enabled = true
+  }
 }
