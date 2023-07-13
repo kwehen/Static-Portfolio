@@ -43,7 +43,7 @@ resource "aws_s3_object" "portfolio" {
 resource "aws_s3_object" "under-construction" {
   bucket = aws_s3_bucket.kwehen1.id
   key = "underconstruction.html"
-  source = "/Users/kwehen/Desktop/AWS/Static Portfolio//underconstruction.html"
+  source = "/Users/kwehen/Desktop/AWS/Static Portfolio/underconstruction.html"
   content_type = "text/html"
 }
 
@@ -95,6 +95,30 @@ locals {
 }
 
 resource "aws_cloudfront_origin_access_identity" "kwehen-origin" {
+
+}
+
+resource "aws_cloudfront_cache_policy" "policy" {
+  name = "policy"
+  min_ttl = 1
+  max_ttl = 31536000
+  default_ttl = 86400
+  parameters_in_cache_key_and_forwarded_to_origin {
+    cookies_config {
+      cookie_behavior = "none"
+    }
+    enable_accept_encoding_brotli = true
+    enable_accept_encoding_gzip = true
+    headers_config {
+      header_behavior = "none"
+    }
+    query_strings_config {
+      query_string_behavior = "none"
+    }
+  }
+  lifecycle {
+    ignore_changes = all
+  }
 }
 
 resource "aws_cloudfront_distribution" "kwehen-cf" {
@@ -116,22 +140,25 @@ resource "aws_cloudfront_distribution" "kwehen-cf" {
   default_root_object = "index.html"
 
   default_cache_behavior {
-    cache_policy_id = "658327ea-f89d-4fab-a63d-7e88639e58f6"
+    cache_policy_id = aws_cloudfront_cache_policy.policy.id
     allowed_methods = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
+    viewer_protocol_policy = "redirect-to-https"
     cached_methods = ["GET", "HEAD"]
     target_origin_id = local.s3_origin_id
-    viewer_protocol_policy = "redirect-to-https"
     }
-
-  restrictions {
-    geo_restriction {
-      restriction_type = "none"
-    }
-  }
-
+  
   viewer_certificate {
     cloudfront_default_certificate = true
   }
+
+  restrictions {
+    geo_restriction {
+      restriction_type = "whitelist"
+      locations        = ["US", "CA", "GB", "DE", "IN", "IR"]
+    }
+  }
+
+
 }
 
 output "cloudfront_domain_name" {
