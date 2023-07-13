@@ -6,6 +6,7 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
+    /* Page Styles */
     body {
       background-color: #000;
       margin: 0;
@@ -36,10 +37,11 @@
       font-weight: normal;
       color: #aaa;
     }
-]
+
+    /* Sidebar Styles */
     .sidebar {
       width: 20%;
-      background-color: rgba(0, 0, 0, 0.7); 
+      background-color: rgba(0, 0, 0, 0.7);
       float: left;
       padding: 10px;
       font-family: 'Poppins', sans-serif;
@@ -51,7 +53,7 @@
       top: 0;
       left: 0;
       z-index: 99;
-      transform: translateX(-100%); 
+      transform: translateX(-100%);
       transition: transform 0.3s ease;
       border-radius: 10px; 
       border: 1px solid #fff; 
@@ -86,13 +88,13 @@
 
     .menu-toggle {
       display: block;
-      position: absolute;
+      position: fixed;
       top: 20px;
       left: 20px;
       z-index: 100;
       cursor: pointer;
       width: 40px; 
-      height: 40px;
+      height: 40px; 
     }
 
     .menu-toggle span,
@@ -104,7 +106,7 @@
       height: 3px;
       width: 100%; 
       transition: all 0.3s ease;
-      border-radius: 2px;
+      border-radius: 2px; 
     }
 
     .menu-toggle span::before,
@@ -133,6 +135,7 @@
       transform: translateY(-10px) rotate(-45deg);
     }
 
+    /* Image Styles */
     .image-container-wrap {
       display: flex;
       flex-wrap: wrap;
@@ -154,7 +157,7 @@
     }
 
     .image-container.open {
-      width: 14%; /* Adjust the width when sidebar is open */
+      width: 14%;
     }
 
     img.my-img {
@@ -208,14 +211,12 @@
       clear: both;
     }
 
-    /* Clearfix for the image containers */
     .clearfix-images::after {
       content: "";
       display: table;
       clear: both;
     }
 
-    /* Container to wrap images and clear floats */
     .image-container-wrap {
       overflow: hidden;
     }
@@ -226,40 +227,13 @@
     }
 
     .sidebar .subheading {
-      margin-top: 40px; /* Adjust the margin-top value to lower the menu heading */
+      margin-top: 40px; 
     }
 
     /* Media queries for touch devices */
     @media (pointer: coarse) {
       .my-img {
         filter: none;
-      }
-    }
-
-    /* Additional Styles */
-    @media (max-width: 600px) {
-      .header {
-        font-size: 20px;
-      }
-
-      .image-container-wrap {
-        flex-wrap: wrap;
-        overflow-x: hidden;
-      }
-
-      .image-container {
-        width: 100%;
-      }
-
-      .menu-toggle {
-        display: block;
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        z-index: 100;
-        cursor: pointer;
-        width: 40px;
-        height: 40px;
       }
     }
   </style>
@@ -293,74 +267,74 @@
   <div class="image-container-wrap">
     <div class="image-container">
       <a href="underconstruction.html">
-        <img class="my-img" src="https://dv4x24yyfnc54.cloudfront.net/iCloud%20Photos%20from%20Kwesi%20Henry/001706910017.jpg" alt="image description">
+        <img class="my-img" src="https://dnka7ftzsecnu.cloudfront.net/LandingPictures/IMG_2164.JPG" alt="image description">
         <div class="caption">Jon Doe - Chamberlain</div>
       </a>
     </div>
     <!-- Repeat the image containers for the remaining images -->
     <div class="image-container">
       <a href="underconstruction.html">
-        <img class="my-img" src="https://dv4x24yyfnc54.cloudfront.net/iCloud%20Photos%20from%20Kwesi%20Henry/001751120011.jpg" alt="image description">
+        <img class="my-img" src="https://dnka7ftzsecnu.cloudfront.net/LandingPictures/IMG_2171.JPG" alt="image description">
         <div class="caption">Chamberlain</div>
       </a>
     </div>
     <div class="image-container">
       <a href="underconstruction.html">
-        <img class="my-img" src="https://dv4x24yyfnc54.cloudfront.net/iCloud%20Photos%20from%20Kwesi%20Henry/001921002880-R1-E006.jpg" alt="image description">
+        <img class="my-img" src="https://dnka7ftzsecnu.cloudfront.net/LandingPictures/IMG_2178.JPG" alt="image description">
         <div class="caption">London</div>
       </a>
     </div>
     <div class="image-container">
       <a href="underconstruction.html">
-        <img class="my-img" src="https://dv4x24yyfnc54.cloudfront.net/iCloud%20Photos%20from%20Kwesi%20Henry/001921002880-R1-E033.jpg" alt="image description">
+        <img class="my-img" src="https://dnka7ftzsecnu.cloudfront.net/LandingPictures/IMG_2174.JPG" alt="image description">
         <div class="caption">PE - London</div>
       </a>
     </div>
     <div class="image-container">
       <a href="underconstruction.html">
-        <img class="my-img" src="https://dv4x24yyfnc54.cloudfront.net/iCloud%20Photos%20from%20Kwesi%20Henry/001921002881-R1-058-27A.jpg" alt="image description">
+        <img class="my-img" src="https://dnka7ftzsecnu.cloudfront.net/LandingPictures/IMG_2172.JPG" alt="image description">
         <div class="caption">Forest - Jacks</div>
       </a>
     </div>
     <div class="image-container">
       <a href="underconstruction.html">
-        <img class="my-img" src="https://dv4x24yyfnc54.cloudfront.net/iCloud%20Photos%20from%20Kwesi%20Henry/naja%20pic.jpg" alt="image description">
+        <img class="my-img" src="https://dnka7ftzsecnu.cloudfront.net/LandingPictures/IMG_2161.JPG" alt="image description">
         <div class="caption">Birthday - Naja</div>
       </a>
     </div>
     <div class="image-container">
       <a href="underconstruction.html">
-        <img class="my-img" src="https://dv4x24yyfnc54.cloudfront.net/iCloud%20Photos%20from%20Kwesi%20Henry/013998006318-R1-074-35A.jpg" alt="image description">
+        <img class="my-img" src="https://dnka7ftzsecnu.cloudfront.net/LandingPictures/IMG_2173.JPG" alt="image description">
         <div class="caption">RICHFAME</div>
       </a>
     </div>
     <div class="image-container">
       <a href="underconstruction.html">
-        <img class="my-img" src="https://dv4x24yyfnc54.cloudfront.net/iCloud%20Photos%20from%20Kwesi%20Henry/171504009837-R1-030.jpg" alt="image description">
+        <img class="my-img" src="https://dnka7ftzsecnu.cloudfront.net/LandingPictures/IMG_2180.JPG" alt="image description">
         <div class="caption">New York</div>
       </a>
     </div>
     <div class="image-container">
       <a href="underconstruction.html">
-        <img class="my-img" src="https://dv4x24yyfnc54.cloudfront.net/iCloud%20Photos%20from%20Kwesi%20Henry/371024005910-R1-037-17.jpg" alt="image description">
+        <img class="my-img" src="https://dnka7ftzsecnu.cloudfront.net/LandingPictures/IMG_2179.JPG" alt="image description">
         <div class="caption">DUCE EN</div>
       </a>
     </div>
     <div class="image-container">
       <a href="underconstruction.html">
-        <img class="my-img" src="https://dv4x24yyfnc54.cloudfront.net/iCloud%20Photos%20from%20Kwesi%20Henry/410881003794-R1-039-18.jpg" alt="image description">
+        <img class="my-img" src="https://dnka7ftzsecnu.cloudfront.net/LandingPictures/IMG_2175.JPG" alt="image description">
         <div class="caption">Back 2 the Matter</div>
       </a>
     </div>
     <div class="image-container">
       <a href="underconstruction.html">
-        <img class="my-img" src="https://dv4x24yyfnc54.cloudfront.net/iCloud%20Photos%20from%20Kwesi%20Henry/821216003385-R1-015-6.jpg" alt="image description">
+        <img class="my-img" src="https://dnka7ftzsecnu.cloudfront.net/LandingPictures/IMG_2177.JPG" alt="image description">
         <div class="caption">PE - Atlanta</div>
       </a>
     </div>
     <div class="image-container">
       <a href="underconstruction.html">
-        <img class="my-img" src="https://dv4x24yyfnc54.cloudfront.net/iCloud%20Photos%20from%20Kwesi%20Henry/824199000561-R1-054-25A.jpg" alt="image description">
+        <img class="my-img" src="https://dnka7ftzsecnu.cloudfront.net/LandingPictures/IMG_2176.JPG" alt="image description">
         <div class="caption">Jacks</div>
       </a>
     </div>
@@ -383,6 +357,7 @@
       imageContainerWrap.classList.remove('open');
     });
 
+    // Add touch event handling for mobile devices
     const imageContainers = document.querySelectorAll('.image-container');
     imageContainers.forEach(function(container) {
       container.addEventListener('touchstart', function() {
@@ -391,6 +366,16 @@
       container.addEventListener('touchend', function() {
         container.classList.remove('touch-hover');
       });
+    });
+
+    // Make the hamburger menu persistent when scrolling
+    window.addEventListener('scroll', function() {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      if (scrollTop > 0) {
+        menuToggle.classList.add('fixed');
+      } else {
+        menuToggle.classList.remove('fixed');
+      }
     });
   </script>
 </body>
