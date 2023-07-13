@@ -22,7 +22,7 @@ resource "aws_s3_bucket_public_access_block" "kwehen-access-block" {
 resource "aws_s3_object" "index" {
   bucket = aws_s3_bucket.kwehen1.id
   key    = "index.html"
-  source = "/Users/kwehen/Desktop/AWS/Static Portfolio//index.html"
+  source = "/Users/kwehen/Desktop/AWS/Static Portfolio/index.html"
   content_type = "text/html"
 }
 
@@ -37,6 +37,13 @@ resource "aws_s3_object" "portfolio" {
   bucket = aws_s3_bucket.kwehen1.id
   key = "portfolio.html"
   source = "/Users/kwehen/Desktop/AWS/Static Portfolio/portfolio.html"
+  content_type = "text/html"
+}
+
+resource "aws_s3_object" "under-construction" {
+  bucket = aws_s3_bucket.kwehen1.id
+  key = "underconstruction.html"
+  source = "/Users/kwehen/Desktop/AWS/Static Portfolio//underconstruction.html"
   content_type = "text/html"
 }
 
@@ -81,4 +88,52 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "kwehen-encryption
   rule {
     bucket_key_enabled = true
   }
+}
+
+locals {
+  s3_origin_id = "kwehen1.s3-website-us-east-1.amazonaws.com"
+}
+
+resource "aws_cloudfront_origin_access_identity" "kwehen-origin" {
+}
+
+resource "aws_cloudfront_distribution" "kwehen-cf" {
+  origin {
+    custom_origin_config {
+      http_port = "80"
+      https_port = "443"
+      origin_protocol_policy = "http-only"
+      origin_ssl_protocols = ["TLSv1", "TLSv1.1", "TLSv1.2"]
+    }
+
+    domain_name = "${aws_s3_bucket.kwehen1.website_endpoint}"
+    origin_id = local.s3_origin_id
+  }
+
+  enabled = true
+  is_ipv6_enabled = false
+  comment = "kwehen-cf"
+  default_root_object = "index.html"
+
+  default_cache_behavior {
+    cache_policy_id = "658327ea-f89d-4fab-a63d-7e88639e58f6"
+    allowed_methods = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
+    cached_methods = ["GET", "HEAD"]
+    target_origin_id = local.s3_origin_id
+    viewer_protocol_policy = "redirect-to-https"
+    }
+
+  restrictions {
+    geo_restriction {
+      restriction_type = "none"
+    }
+  }
+
+  viewer_certificate {
+    cloudfront_default_certificate = true
+  }
+}
+
+output "cloudfront_domain_name" {
+  value = aws_cloudfront_distribution.kwehen-cf.domain_name
 }
