@@ -22,7 +22,7 @@ resource "aws_s3_bucket_public_access_block" "kwehen-access-block" {
 resource "aws_s3_object" "index" {
   bucket = aws_s3_bucket.kwehen1.id
   key    = "index.html"
-  source = "/Users/kwehen/Desktop/AWS/Static Portfolio/index.html"
+  source = "C:/Users/is00kxh/Desktop/Work Study/Storefront/index.html"
   content_type = "text/html"
 }
 
@@ -49,6 +49,10 @@ resource "aws_s3_object" "under-construction" {
 
 resource "aws_s3_bucket_policy" "kwehen-policy" {
   bucket = aws_s3_bucket.kwehen1.id
+  depends_on = [
+    aws_s3_bucket_public_access_block.kwehen-access-block,
+    aws_s3_bucket.kwehen1
+    ]
 
   policy = <<EOF
 {
