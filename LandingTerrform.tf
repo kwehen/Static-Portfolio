@@ -19,10 +19,100 @@ resource "aws_s3_bucket_public_access_block" "kwehen-access-block" {
   restrict_public_buckets     = false
 }
 
+resource "aws_s3_object" "LandingPictures" {
+  bucket = aws_s3_bucket.kwehen1.id
+  key = "LandingPictures/"
+  source = "/dev/null"
+}
+
+resource "aws_s3_object" "IMG_2164_JPG" {
+  bucket = aws_s3_bucket.kwehen1.id
+  key    = "LandingPictures/IMG_2164.JPG"
+  source = "/Users/kwehen/Desktop/AWS/Static Portfolio/LandingPictures/IMG_2164.JPG"
+  content_type = "image/jpeg"
+}
+
+resource "aws_s3_object" "IMG_2171_JPG" {
+  bucket = aws_s3_bucket.kwehen1.id
+  key    = "LandingPictures/IMG_2171.JPG"
+  source = "/Users/kwehen/Desktop/AWS/Static Portfolio/LandingPictures/IMG_2171.JPG"
+  content_type = "image/jpeg"
+}
+
+resource "aws_s3_object" "IMG_2178_JPG" {
+  bucket = aws_s3_bucket.kwehen1.id
+  key    = "LandingPictures/IMG_2178.JPG"
+  source = "/Users/kwehen/Desktop/AWS/Static Portfolio/LandingPictures/IMG_2178.JPG"
+  content_type = "image/jpeg"
+}
+
+resource "aws_s3_object" "IMG_2174_JPG" {
+  bucket = aws_s3_bucket.kwehen1.id
+  key    = "LandingPictures/IMG_2174.JPG"
+  source = "/Users/kwehen/Desktop/AWS/Static Portfolio/LandingPictures/IMG_2174.JPG"
+  content_type = "image/jpeg"
+}
+
+resource "aws_s3_object" "IMG_2172_JPG" {
+  bucket = aws_s3_bucket.kwehen1.id
+  key    = "LandingPictures/IMG_2172.JPG"
+  source = "/Users/kwehen/Desktop/AWS/Static Portfolio/LandingPictures/IMG_2172.JPG"
+  content_type = "image/jpeg"
+}
+
+resource "aws_s3_object" "IMG_2161_JPG" {
+  bucket = aws_s3_bucket.kwehen1.id
+  key    = "LandingPictures/IMG_2161.JPG"
+  source = "/Users/kwehen/Desktop/AWS/Static Portfolio/LandingPictures/IMG_2161.JPG"
+  content_type = "image/jpeg"
+}
+
+resource "aws_s3_object" "IMG_2173_JPG" {
+  bucket = aws_s3_bucket.kwehen1.id
+  key    = "LandingPictures/IMG_2173.JPG"
+  source = "/Users/kwehen/Desktop/AWS/Static Portfolio/LandingPictures/IMG_2173.JPG"
+  content_type = "image/jpeg"
+}
+
+resource "aws_s3_object" "IMG_2180_JPG" {
+  bucket = aws_s3_bucket.kwehen1.id
+  key    = "LandingPictures/IMG_2180.JPG"
+  source = "/Users/kwehen/Desktop/AWS/Static Portfolio/LandingPictures/IMG_2180.JPG"
+  content_type = "image/jpeg"
+}
+
+resource "aws_s3_object" "IMG_2179_JPG" {
+  bucket = aws_s3_bucket.kwehen1.id
+  key    = "LandingPictures/IMG_2179.JPG"
+  source = "/Users/kwehen/Desktop/AWS/Static Portfolio/LandingPictures/IMG_2179.JPG"
+  content_type = "image/jpeg"
+}
+
+resource "aws_s3_object" "IMG_2175_JPG" {
+  bucket = aws_s3_bucket.kwehen1.id
+  key    = "LandingPictures/IMG_2175.JPG"
+  source = "/Users/kwehen/Desktop/AWS/Static Portfolio/LandingPictures/IMG_2175.JPG"
+  content_type = "image/jpeg"
+}
+
+resource "aws_s3_object" "IMG_2177_JPG" {
+  bucket = aws_s3_bucket.kwehen1.id
+  key    = "LandingPictures/IMG_2177.JPG"
+  source = "/Users/kwehen/Desktop/AWS/Static Portfolio/LandingPictures/IMG_2177.JPG"
+  content_type = "image/jpeg"
+}
+
+resource "aws_s3_object" "IMG_2176_JPG" {
+  bucket = aws_s3_bucket.kwehen1.id
+  key    = "LandingPictures/IMG_2176.JPG"
+  source = "/Users/kwehen/Desktop/AWS/Static Portfolio/LandingPictures/IMG_2176.JPG"
+  content_type = "image/jpeg"
+}
+
 resource "aws_s3_object" "index" {
   bucket = aws_s3_bucket.kwehen1.id
   key    = "index.html"
-  source = "C:/Users/is00kxh/Desktop/Work Study/Storefront/index.html"
+  source = "/Users/kwehen/Desktop/AWS/Static Portfolio/index.html"
   content_type = "text/html"
 }
 
@@ -51,21 +141,30 @@ resource "aws_s3_bucket_policy" "kwehen-policy" {
   bucket = aws_s3_bucket.kwehen1.id
   depends_on = [
     aws_s3_bucket_public_access_block.kwehen-access-block,
-    aws_s3_bucket.kwehen1
+    aws_s3_bucket.kwehen1,
+    aws_cloudfront_distribution.kwehen-cf
     ]
 
   policy = <<EOF
 {
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "PublicReadGetObject",
-      "Effect": "Allow",
-      "Principal": "*",
-      "Action": "s3:GetObject",
-      "Resource": "arn:aws:s3:::kwehen1/*"
-    }
-  ]
+    "Version": "2008-10-17",
+    "Id": "PolicyForCloudFrontPrivateContent",
+    "Statement": [
+        {
+            "Sid": "AllowCloudFrontServicePrincipal",
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "cloudfront.amazonaws.com"
+            },
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::kwehen1/*",
+            "Condition": {
+                "StringEquals": {
+                    "AWS:SourceArn": "${aws_cloudfront_distribution.kwehen-cf.arn}"
+                }
+            }
+        }
+    ]
 }
 EOF
 }
@@ -98,12 +197,20 @@ locals {
   s3_origin_id = "kwehen1.s3-website-us-east-1.amazonaws.com"
 }
 
+resource "aws_cloudfront_origin_access_control" "kwehen-OAC" {
+  name = "kwehen-OAC"
+  description = "OAC for KweHen"
+  origin_access_control_origin_type = "s3"
+  signing_behavior = "always"
+  signing_protocol = "sigv4"
+}
+
 resource "aws_cloudfront_origin_access_identity" "kwehen-origin" {
 
 }
 
-resource "aws_cloudfront_cache_policy" "policy" {
-  name = "policy"
+resource "aws_cloudfront_cache_policy" "S3-Optimized" {
+  name = "S3-Optimized"
   min_ttl = 1
   max_ttl = 31536000
   default_ttl = 86400
@@ -127,14 +234,8 @@ resource "aws_cloudfront_cache_policy" "policy" {
 
 resource "aws_cloudfront_distribution" "kwehen-cf" {
   origin {
-    custom_origin_config {
-      http_port = "80"
-      https_port = "443"
-      origin_protocol_policy = "http-only"
-      origin_ssl_protocols = ["TLSv1", "TLSv1.1", "TLSv1.2"]
-    }
-
-    domain_name = "${aws_s3_bucket.kwehen1.website_endpoint}"
+    domain_name = aws_s3_bucket.kwehen1.bucket_regional_domain_name
+    origin_access_control_id = aws_cloudfront_origin_access_control.kwehen-OAC.id
     origin_id = local.s3_origin_id
   }
 
@@ -144,7 +245,7 @@ resource "aws_cloudfront_distribution" "kwehen-cf" {
   default_root_object = "index.html"
 
   default_cache_behavior {
-    cache_policy_id = aws_cloudfront_cache_policy.policy.id
+    cache_policy_id = aws_cloudfront_cache_policy.S3-Optimized.id
     allowed_methods = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
     viewer_protocol_policy = "redirect-to-https"
     cached_methods = ["GET", "HEAD"]
