@@ -54,6 +54,14 @@ resource "aws_s3_object" "Jon-Doe" {
   content_type = "text/html"
 }
 
+resource "aws_s3_object" "Contact" {
+  bucket = aws_s3_bucket.kwehen1.id
+  key = "contact.html"
+  source = "/Users/kwehen/Desktop/AWS/Static Portfolio//contact-side.html"
+  content_type = "text/html"
+}
+
+
 resource "aws_s3_bucket_policy" "kwehen-policy" {
   bucket = aws_s3_bucket.kwehen1.id
   depends_on = [
