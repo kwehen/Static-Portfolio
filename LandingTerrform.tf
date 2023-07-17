@@ -47,6 +47,13 @@ resource "aws_s3_object" "under-construction" {
   content_type = "text/html"
 }
 
+resource "aws_s3_object" "Jon-Doe" {
+  bucket = aws_s3_bucket.kwehen1.id
+  key = "jondoe.html"
+  source = "/Users/kwehen/Desktop/AWS/Static Portfolio/jondoe.html"
+  content_type = "text/html"
+}
+
 resource "aws_s3_bucket_policy" "kwehen-policy" {
   bucket = aws_s3_bucket.kwehen1.id
   depends_on = [
@@ -172,8 +179,6 @@ resource "aws_cloudfront_distribution" "kwehen-cf" {
       locations        = ["US", "CA", "GB", "DE", "IN", "IR"]
     }
   }
-
-
 }
 
 output "cloudfront_domain_name" {
