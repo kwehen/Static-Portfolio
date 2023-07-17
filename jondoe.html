@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>KweHen</title>
+  <link rel="icon" href="https://simpleicon.com/wp-content/uploads/roll-film.png">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+    /* Page Styles */
+    body {
+      background-color: #000;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Header Styles */
+    .header {
+      padding: 20px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 24px;
+      color: #fff; /* Set the text color to white */
+      text-align: center; /* Center the text */
+      margin: 0 auto; /* Center the header horizontally */
+      max-width: 800px; /* Set a maximum width for the header */
+    }
+
+    .header h1 {
+      margin-bottom: 10px;
+      font-size: 40px;
+      font-weight: bold;
+      line-height: 1;
+    }
+
+    .header p {
+      margin-bottom: 20px;
+      font-size: 18px;
+      font-weight: normal;
+      color: #aaa;
+    }
+
+    /* Sidebar Styles */
+    .sidebar {
+      width: 20%;
+      background-color: rgba(0, 0, 0, 0.7); /* Set the background-color to black with transparency */
+      float: left;
+      padding: 10px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px;
+      color: #fff; /* Set the text color to white */
+      margin-right: 5px; /* Add smaller right margin for sidebar */
+      height: calc(100vh - 40px); /* Set sidebar height to fill the viewport vertically */
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 99;
+      transform: translateX(-100%); /* Hide the sidebar by default */
+      transition: transform 0.3s ease;
+      border-radius: 10px; /* Add border radius */
+      border: 1px solid #fff; /* Add border */
+    }
+
+    .sidebar.open {
+      transform: translateX(0); /* Show the sidebar when open class is added */
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      margin-top: 40px; /* Add margin to move menu items down */
+    }
+
+    .sidebar li {
+      margin-bottom: 10px;
+    }
+
+    .sidebar a {
+      text-decoration: none;
+      color: #fff; /* Set the link color to white */
+      display: block;
+      padding: 5px;
+      border-radius: 0.5rem; /* Add border radius */
+    }
+
+    .sidebar a:hover {
+      background-color: #ddd;
+    }
+
+    .menu-toggle {
+      display: block;
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 100;
+      cursor: pointer;
+      width: 40px; /* Increase the width */
+      height: 40px; /* Increase the height */
+    }
+
+    .menu-toggle span,
+    .menu-toggle span::before,
+    .menu-toggle span::after {
+      content: '';
+      display: block;
+      background-color: #fff;
+      height: 3px;
+      width: 100%; /* Set width to span the entire area */
+      transition: all 0.3s ease;
+      border-radius: 2px; /* Add border radius */
+    }
+
+    .menu-toggle span::before,
+    .menu-toggle span::after {
+      position: absolute;
+      left: 0;
+    }
+
+    .menu-toggle span::before {
+      top: -10px;
+    }
+
+    .menu-toggle span::after {
+      top: 10px;
+    }
+
+    .menu-toggle.open span {
+      background-color: transparent;
+    }
+
+    .menu-toggle.open span::before {
+      transform: translateY(10px) rotate(45deg);
+    }
+
+    .menu-toggle.open span::after {
+      transform: translateY(-10px) rotate(-45deg);
+    }
+
+    /* Image Styles */
+    .image-container-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center; /* Center the images */
+      align-items: flex-start;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      margin-left: 20px;
+      margin-right: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .image-container {
+      width: 20%; /* Adjust the width as desired */
+      margin-bottom: 20px; /* Increase the margin to space out the images */
+      margin-right: 3%; /* Add horizontal spacing between the images */
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .image-container.open {
+      width: 14%; /* Adjust the width when sidebar is open */
+    }
+
+    img.my-img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-width: 100%;
+      transition: all 300ms;
+      border-radius: 0.5rem; /* Add border radius */
+      cursor: pointer;
+      filter: grayscale(100%);
+    }
+
+    img.my-img:hover,
+    img.my-img.touch-hover {
+      filter: grayscale(0%);
+    }
+
+    .caption {
+      text-align: center;
+      margin-top: 5px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px;
+      color: #fff;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 8px;
+      border-radius: 0.5rem; /* Add border radius */
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .image-container:hover .caption,
+    .image-container.touch-hover .caption {
+      opacity: 1;
+    }
+
+    .clearfix::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    /* Clearfix for the sidebar */
+    .clearfix-sidebar::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    /* Clearfix for the image containers */
+    .clearfix-images::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    /* Container to wrap images and clear floats */
+    .image-container-wrap {
+      overflow: hidden;
+    }
+
+    /* Fix for image placement */
+    .image-container:nth-child(3n+1) {
+      clear: left;
+    }
+
+    .sidebar .subheading {
+      margin-top: 40px; /* Adjust the margin-top value to lower the menu heading */
+    }
+
+    .enlarged {
+        text-align: center;
+        width: 80%;
+        height: auto;
+        max-width: 80%;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        filter: grayscale(0%);
+        cursor: zoom-out;
+    }
+
+    .no-scroll {
+        overflow: hidden;
+    }
+
+
+    /* Media queries for touch devices */
+    @media (pointer: coarse) {
+      .my-img {
+        filter: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="header">
+    <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white"><a href="portfolio.html" style="text-decoration: none;color:white;">KweHen</a></h1>
+    <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">Welcome to my shoot for Jon Doe, with Chamberlain</p>
+    <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">This shoot was a few months in the making, Chamerberlain and I are both naturals in our own right. A dynamic duo.</p>
+  </section>
+
+  <div class="menu-toggle">
+    <span></span>
+  </div>
+
+  <div class="sidebar">
+    <h2 class="subheading">Menu</h2>
+    <ul>
+      <li><a href="underconstruction.html">Fashion</a></li>
+      <li><a href="underconstruction.html">Street Photography</a></li>
+      <li><a href="underconstruction.html">Birthday's</a></li>
+      <li><a href="underconstruction.html">Travel</a></li>
+      <li><a href="underconstruction.html">Modeling</a></li>
+      <li><a href="underconstruction.html">Menu Item 6</a></li>
+      <li><a href="underconstruction.html">Menu Item 7</a></li>
+      <li><a href="underconstruction.html">Menu Item 8</a></li>
+      <li><a href="underconstruction.html">Menu Item 9</a></li>
+      <li><a href="underconstruction.html">Menu Item 10</a></li>
+    </ul>
+  </div>
+
+  <div class="image-container-wrap">
+    <div class="image-container">
+      <a>
+        <img class="my-img" src="https://dnka7ftzsecnu.cloudfront.net/LandingPictures/IMG_2164.JPG?Expires=1722470400&Signature=Ete4nA5Fx-83LI9435UyAAhSbKcMUaEsxbJkVaVJD4J39rl3-xh-CtxEMWh22Cnm91DUHUaq3ROmDwxYBrMjAji44BXv6sYf5I3hLqTLXHIGS0Z1dsrcj5V5eqxCp8aMBXvVw3J8UdRqphpyZfNaLIx1O5Ogu0BtoHiVkQ0aS4g0a06aDeBF4C1Bd-JTGyIO-QAhAEkrC5Uf0SmxkkPXsoJs8~cgDf06qx68dd4OAGfEazggWy4nRcLwoKPfw--muH2wi9oX5whOzL~~aS7fr2vkGMkuXtDxMio50LmS~Vs3iU7H-a733Q7t4RugdguKAowqZ9qNTyQd3EOd0oTDVw__&Key-Pair-Id=KJVIX9H6ZFSIS">
+      </a>
+    </div>
+    <div class="image-container">
+      <a>
+        <img class="my-img" src="https://dnka7ftzsecnu.cloudfront.net/JonDoe/001706910008%202.jpg?Expires=1722470400&Signature=VmfL7CooKSONsV5EeeEPzTQW1Or4dJsuz1Ub-XwC6Dc5Z4SjEIaBvNq8nS~xsQ4diETEfDvKgKNlHz5dn~EAyrdJTKqCjZT-6~Xr9Gf71Sf13h~svSl5EHfbx4DLYJlAjMInyuZJmtdxzS1~tHWSdidEJfvADODDQNlSMDu-HxKDz9Iu2Qet8X0e0Rig38~2btcYdeNHf8UpA7IcMTLxineNQc9qiz7QFE73e1oNf0R8bTKMqXMHurCqlX81YMJ1AGKqT6dYSX7hVkfZ-3Ma3ElutfG6jXq8kvHmpnL6ZkTxKJP1qRUodComLnpgYZIX9WFN~rnHYEqs4W7TUPqi-g__&Key-Pair-Id=KJVIX9H6ZFSIS">
+      </a>
+    </div>
+    <div class="image-container">
+      <a>
+        <img class="my-img" src="https://dnka7ftzsecnu.cloudfront.net/JonDoe/001706910021%202.jpg?Expires=1722470400&Signature=C2nU-OTMWY5FMtdonyO9pr1xjVPsxgyYhPGMHQlrAJBuNpEjTz8X-ZPdpxmYGYjap1crMmhwxXbmiO0egBC5jACfJtciy9DlTcIQqxVVYG5tEXKrGx0-3mAlArjOKTy136D94egckVjn7A0TtRAiXy8k85PUqdmkBMLJpa~9F5TyRM4q~yIkIxpPxQom0tSJEb2SfiSvhcFvlQvjfovmuI15B-7the85dPwmm1cpLSa-EZKBG6SNfNu1k4Ytagd6OxJKJcZSngMc-To4MhIcUf-BAGyRIE9t2azQ1AfwZyy3zLpdC5KFyscXoiTHNvmrEaALhCpzfBC801bYcLuMUA__&Key-Pair-Id=KJVIX9H6ZFSIS">
+      </a>
+    </div>
+    <div class="image-container">
+      <a>
+        <img class="my-img" src="https://dnka7ftzsecnu.cloudfront.net/JonDoe/001706910012%202.JPG?Expires=1722470400&Signature=zKlZWq1uXDW1epX9cmeZrN7JmQjRQBzXavsEmzgxR4S2wJhKMt2eGkbn0paRD5eAk1uXeoFJ-sNj1eYXQq-cU81hdyoFuyOjAJ30odjEIPeOPUcQ88wS4urCyfHDHctWFQ3i~NWkh2qzy8RAnr-Qxpc2cwQRPSRi0Ptp~5rNE1t7SlYh~vxdKepny9hQmBo9CS7KP4CfcRk6QmeeZGCzM-SV10hYCCjpuvnXfhkTgqjIg4VmQoXjqRhh3UXb99yylbgbXDWQCm9i0oKMHg3EE0pZzIZFK-AUXBMmlo2HFKAGA0LagFk-lp~U3qFj~owlxpmEFZSIf7O-NT5EbDN0wg__&Key-Pair-Id=KJVIX9H6ZFSIS">
+      </a>
+    </div>
+    <div class="image-container">
+      <a>
+        <img class="my-img" src="https://dnka7ftzsecnu.cloudfront.net/JonDoe/001706910024%202.JPG?Expires=1722470400&Signature=JhIVS8nKZiIG8cIjLRK5HGFUSlj3f~9haChpvkg73KVmRYEfmdGhvK3ozv0~icU5s0YHpfeufh3wz5Dz9mkpUR1Pi3sd8dR8rZzROlW-jO5M8HOqH9zRj-23ifZgnv38gPK9YlD0J4OtA1mMAI8gxfyU-63mYfcTNs7NBjF7KFuffAwqzCJh2wIKrhwIGI9Hf7eKNc7iAy7e1vtg1252Vzbh5M0rUwhVpt2pzgfWj-B5gKfMQhetj4OK1S6OXNQayiNWcBwn8nsxXmumgoiTfJD2P8JuvNOipf5cg-Fp0fTMWkWG-Zfls5cSbiIT1S4umZ6xC1rIHeWIM606vuT6lg__&Key-Pair-Id=KJVIX9H6ZFSIS">
+      </a>
+    </div>
+    <div class="image-container">
+      <a>
+        <img class="my-img" src="https://dnka7ftzsecnu.cloudfront.net/JonDoe/001706910026%202.jpg?Expires=1722470400&Signature=gur-EgA85N6JamKIQ7J~3316gbPJiYUXsW0wqxWKiB5IfHPW53rKfWSmTQjZVXAkvRPvm6uLU-Hlk7DolwqlBtu7~eBnOuNVK1JS9HwBgX2U8WcSTnQh89aoSQqBDmNirgILPgweYIU8btdNzA3bTKMG6DAG5V5RwVcYZcJt9S003HhdiNVnAt3KZP3k-8uPnv4l7g6gLEpKVtdcLbKpgJ1m~XFmYZ3GQXBRwxUMhyEyHRD3wvYguK~Ae6N4EyUGrOv56ochm9dg275x38wWPqo2iNKLjEmDJgWtO4ogvhtwsDsjM58Zg7fGqYSNkFUzjbk7Jh7YNGAgRbxD4mndFA__&Key-Pair-Id=KJVIX9H6ZFSIS">
+      </a>
+    </div>
+    <div class="image-container">
+      <a>
+        <img class="my-img" src="https://dnka7ftzsecnu.cloudfront.net/JonDoe/001706910015%202.jpg?Expires=1722470400&Signature=ZYfJP9br3cMAVF103BQnTguTzdcVBusnYXgjSW-c~ZH2NzN6n4S1c8llZcDVC~H7a0tIp2-Ew437nnn1OuHO-z1fNhGFXvoMbQWpt5uRCf9qNq7E9bwocCcZVsnZwoMugSqO8GogqT3SWM-CgC7B7cNje4ixN2koAzZtYlrqaqcHUeILF38gZEatr1xIueGNNYRXvlrejnV~1i3rsqE910pWRHvf5FH2XbPqap7T6d4lF-vbh8-CYrWYVQdtpAtPaTrtwBMBVQNbjiSRGJUzSBqTDa4ywgrPuUACZqKwlOGh8cvpg1skR-DusBk4rBkRw~NG-uAX~cJCpCyU0cv7vw__&Key-Pair-Id=KJVIX9H6ZFSIS">
+      </a>
+    </div>
+    <div class="image-container">
+      <a>
+        <img class="my-img" src="https://dnka7ftzsecnu.cloudfront.net/JonDoe/001706910018%202.jpg?Expires=1722470400&Signature=vkK~blQgqkEBxzi9cG7x5v3fkDD4gdQ2nsW2Vma2oX-mafQO~wX0sNR7~4awWJU6ZXiFpx7-rbrLd44WpwMXc7xuY3~9Ame-MzVd5FeSzf4~sgDpCG6Fa8HwdmWaXibw8hUyEUFJDWuOshZ7tDtMXHgSFTm0qOCZDN4ERGPzAnc3BC5skLozLTfI2E8mu2PRYP22iLMzzXOywuaOgqT5hONYMcxFudN~S4X6WYORJUuxED7XIl1J63Av~XYmYDjtMTTTgTVWkEkIw4ir3FEt5W0w-Bn37o3TnwyPNla2qPDVXhVNEd25TKr7y6eYlTYIkxbmVDgsoiRfe8keUJrzOg__&Key-Pair-Id=KJVIX9H6ZFSIS">
+      </a>
+    </div>
+  </div>
+
+  <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const sidebar = document.querySelector('.sidebar');
+    const imageContainerWrap = document.querySelector('.image-container-wrap');
+
+    menuToggle.addEventListener('click', function() {
+      menuToggle.classList.toggle('open');
+      sidebar.classList.toggle('open');
+      imageContainerWrap.classList.toggle('open');
+    });
+
+    imageContainerWrap.addEventListener('click', function() {
+      menuToggle.classList.remove('open');
+      sidebar.classList.remove('open');
+      imageContainerWrap.classList.remove('open');
+    });
+
+    // Add touch event handling for mobile devices
+    const imageContainers = document.querySelectorAll('.image-container');
+    imageContainers.forEach(function(container) {
+      container.addEventListener('touchstart', function() {
+        container.classList.add('touch-hover');
+      });
+      container.addEventListener('touchend', function() {
+        container.classList.remove('touch-hover');
+      });
+    });
+
+    const images = document.querySelectorAll('.my-img');
+
+    images.forEach(function(image) {
+    image.addEventListener('click', function() {
+        image.classList.toggle('enlarged');
+        document.classList.toggle('no-scroll');
+    });
+    });
+
+    // Make the hamburger menu persistent when scrolling
+    window.addEventListener('scroll', function() {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      if (scrollTop > 0) {
+        menuToggle.classList.add('fixed');
+      } else {
+        menuToggle.classList.remove('fixed');
+      }
+    });
+  </script>
+</body>
+</html>
