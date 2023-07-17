@@ -57,7 +57,7 @@ resource "aws_s3_object" "Jon-Doe" {
 resource "aws_s3_object" "Contact" {
   bucket = aws_s3_bucket.kwehen1.id
   key = "contact.html"
-  source = "/Users/kwehen/Desktop/AWS/Static Portfolio//contact-side.html"
+  source = "/Users/kwehen/Desktop/AWS/Static Portfolio//contact.html"
   content_type = "text/html"
 }
 
