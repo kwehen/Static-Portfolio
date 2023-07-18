@@ -184,7 +184,7 @@ resource "aws_cloudfront_distribution" "kwehen-cf" {
   restrictions {
     geo_restriction {
       restriction_type = "whitelist"
-      locations        = ["US", "CA", "GB", "DE", "IN", "IR"]
+      locations        = ["US", "CA", "GB", "DE", "IN", "IR", "JM"]
     }
   }
 }
