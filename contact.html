@@ -3,17 +3,133 @@
 <head>
   <title>KweHen</title>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="icon" href="https://simpleicon.com/wp-content/uploads/roll-film.png">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
     /* Page Styles */
     body {
-      background-color: #000;
-      margin: 0;
-      padding: 0;
+        background-color: #000;
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+      }
+
+      /* Form Styles */
+      .card {
+        background-color: rgba(0, 0, 0, 0.7);
+        color: #fff;
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        border-radius: 10px;
+      }
+      
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
+
+      .card h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        font-weight: bold;
+        color: #fff;
+      }
+
+      .form-control {
+      display: block;
+      width: 100%;
+      padding: 0.375rem 0.75rem;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #495057;
+      background-color: #fff;
+      background-clip: padding-box;
+      border: 1px solid #ced4da;
+      border-radius: 0.25rem;
+      transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+      font-family: 'Poppins', sans-serif;
+      }
+
+      .form-control:focus {
+      color: #495057;
+      background-color: #fff;
+      border-color: #80bdff;
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+      }
+
+      .form-group small {
+      display: block;
+      margin-top: 0.25rem;
+      color: #6c757d;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      font-weight: 400;
+      color: #fff;
+      text-align: center;
+      vertical-align: middle;
+      user-select: none;
+      background-color: #007bff;
+      border: 1px solid #007bff;
+      padding: 0.375rem 0.75rem;
+      font-size: 1rem;
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.5;
+      border-radius: 0.25rem;
+      transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+      box-shadow 0.15s ease-in-out;
+    }
+
+    .btn-primary:hover {
+      color: #fff;
+      background-color: #0069d9;
+      border-color: #0062cc;
+    }
+
+     .form-group {
+        margin-bottom: 20px; /* Add margin-bottom for spacing */
+      }
+
+      .form-group label {
+        color: #aaa;
+      }
+
+      .form-group .form-control {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-color: #fff;
+        color: #fff;
+      }
+
+      .form-group .form-control::placeholder {
+        color: #ccc;
+      }
+
+      .form-group small {
+        color: #aaa;
+      }
+
+      .btn-primary {
+        background-color: #1e90ff;
+        border-color: #1e90ff;
+      }
+
+      .btn-primary:hover {
+        background-color: #0069d9;
+        border-color: #0062cc;
+      }
+
+      #response {
+        margin-top: 20px;
+        color: #fff;
+      }
 
     /* Header Styles */
     .header {
@@ -137,69 +253,6 @@
       transform: translateY(-10px) rotate(-45deg);
     }
 
-    /* Image Styles */
-    .image-container-wrap {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center; /* Center the images */
-      align-items: flex-start;
-      margin-top: 20px;
-      margin-bottom: 20px;
-      margin-left: 20px;
-      margin-right: 20px;
-      transition: all 0.3s ease;
-    }
-
-    .image-container {
-      width: 20%; /* Adjust the width as desired */
-      margin-bottom: 20px; /* Increase the margin to space out the images */
-      margin-right: 3%; /* Add horizontal spacing between the images */
-      position: relative;
-      transition: all 0.3s ease;
-    }
-
-    .image-container.open {
-      width: 14%; /* Adjust the width when sidebar is open */
-    }
-
-    img.my-img {
-      display: block;
-      width: 100%;
-      height: auto;
-      max-width: 100%;
-      transition: all 300ms;
-      border-radius: 0.5rem; /* Add border radius */
-      cursor: pointer;
-      filter: grayscale(100%);
-    }
-
-    img.my-img:hover,
-    img.my-img.touch-hover {
-      filter: grayscale(0%);
-    }
-
-    .caption {
-      text-align: center;
-      margin-top: 5px;
-      font-family: 'Poppins', sans-serif;
-      font-size: 16px;
-      color: #fff;
-      background-color: rgba(0, 0, 0, 0.7);
-      padding: 8px;
-      border-radius: 0.5rem; /* Add border radius */
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-
-    .image-container:hover .caption,
-    .image-container.touch-hover .caption {
-      opacity: 1;
-    }
-
     .clearfix::after {
       content: "";
       display: table;
@@ -213,24 +266,7 @@
       clear: both;
     }
 
-    /* Clearfix for the image containers */
-    .clearfix-images::after {
-      content: "";
-      display: table;
-      clear: both;
-    }
-
-    /* Container to wrap images and clear floats */
-    .image-container-wrap {
-      overflow: hidden;
-    }
-
-    /* Fix for image placement */
-    .image-container:nth-child(3n+1) {
-      clear: left;
-    }
-    
-        footer {
+    footer {
       background-color: rgba(0, 0, 0, 0.7);
       padding: 20px;
       font-family: 'Poppins', sans-serif;
@@ -267,8 +303,8 @@
 <body>
   <section class="header">
     <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white"><a href="portfolio" style="text-decoration: none;color:white;">KweHen</a></h1>
-    <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">Welcome to the Art Gallery.</p>
-    <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">Every picture you see contains its own gallery. Enjoy!</p>
+    <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">Thank you for visiting the art gallery.</p>
+    <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">Contact me here, I will reach out within 24 hours.</p>
   </section>
 
   <div class="menu-toggle">
@@ -286,80 +322,40 @@
       <li><a href="underconstruction">Travel</a></li>
       <li><a href="underconstruction">Modeling</a></li>
       <li><a href="underconstruction">Extras</a></li>
-      <li><a href="underconstruction" class="counter-number">Extras</a></li>
     </ul>
   </div>
 
-  <div class="image-container-wrap">
-    <div class="image-container">
-      <a href="jondoe">
-        <img class="my-img" src="https://dnka7ftzsecnu.cloudfront.net/LandingPictures/IMG_2164.JPG?Expires=1722470400&Signature=Ete4nA5Fx-83LI9435UyAAhSbKcMUaEsxbJkVaVJD4J39rl3-xh-CtxEMWh22Cnm91DUHUaq3ROmDwxYBrMjAji44BXv6sYf5I3hLqTLXHIGS0Z1dsrcj5V5eqxCp8aMBXvVw3J8UdRqphpyZfNaLIx1O5Ogu0BtoHiVkQ0aS4g0a06aDeBF4C1Bd-JTGyIO-QAhAEkrC5Uf0SmxkkPXsoJs8~cgDf06qx68dd4OAGfEazggWy4nRcLwoKPfw--muH2wi9oX5whOzL~~aS7fr2vkGMkuXtDxMio50LmS~Vs3iU7H-a733Q7t4RugdguKAowqZ9qNTyQd3EOd0oTDVw__&Key-Pair-Id=KJVIX9H6ZFSIS" alt="image description">
-      </a>
-    </div>
-    <div class="image-container">
-      <a href="underconstruction">
-        <img class="my-img" src="https://dnka7ftzsecnu.cloudfront.net/LandingPictures/IMG_2171.JPG?Expires=1722470400&Signature=iBxhr3d6M1X-q-jp9twLo9qTNkpie-l-0tN4c1ofOsUF-PtGRoEHSBZnGKcTsWnIW3ARWN1EY5iQn~phtXZ6IdGbTaAdLDUuh2FHByd6DyU43T~~zPvwuHW4kFIUb2D9TpZ3AJAaUtlOJU-Ns3N8GWoMUFVVBejjicsUSw4yxHwoLzMvZlfDjr26EmQ1AukejJqAagQGbcqY~F7-WnsJb4-bJqi4pcd6rF5F2dqNkxkqAp7GJ1Tf~WXucJpVS2jF1Ibhd64O06cm2izdSdnEgz~FcNZq87fwEo2hA23sMYP1lo1bhgkVYqcyBK4knkd5EmQwVIgFvpLuW1ygMxyhYA__&Key-Pair-Id=KJVIX9H6ZFSIS" alt="image description">
-      </a>
-    </div>
-    <div class="image-container">
-      <a href="underconstruction">
-        <img class="my-img" src="https://dnka7ftzsecnu.cloudfront.net/LandingPictures/IMG_2178.JPG?Expires=1722470400&Signature=JrWhTkWtRHRYm7Dru4YqNj74OuJoWXct69gDmrZFCftDK0FVw~ouwEkGYBqSB-Iju-WPvhFp8N4ryo1T~X1FbuQHw4-HW7q0TL-V04cqXRbSpRkoR~v3lMzOS4EBxRmmW0m-FY0y6tBIh9sGTEqA95C~TyqM65miXx~MqiI8SMVRgjU1bcmQljo~0Rn4N2vWlrZz3UegrMn1NSk0uNmJEeya6VwRb8pwe7IG~pj3xLb5gn-JwIkI-~JyLhVjVsQc1n9NseM2KQBvlCdZFb3VLvSCmNLUIM6L6~xdELK5TI3958yBlPCd59Ek9AIQIHy5xRErA1uNhSWzTudMV-g0uw__&Key-Pair-Id=KJVIX9H6ZFSIS" alt="image description">
-      </a>
-    </div>
-    <div class="image-container">
-      <a href="underconstruction">
-        <img class="my-img" src="https://dnka7ftzsecnu.cloudfront.net/LandingPictures/IMG_2174.JPG?Expires=1722470400&Signature=WDR6ApQJyAAdUfIiJCN1ZtJn9d4DJcngTAUudG1m-U8XuEhar4yCqJwn0fKknTToLv7WmTHwYaLmBhcrKyB~HkB5ldmxgtJxMJrKV1A~LIKDVhmW2HasWDwPhBMI236TUEU~kPf7zIxYZO4Em4NNykdNEc-stVT65sL2kh7QpvG408xELWAtXNSp5isjsoyH7Pz29km7TVFA7k3Oiz2mSoT4gJ38RQKbG3zp-0-E38rbxi26I0MA-mJf-R~DS8AEfA95FhVImLpmGEq31LcMJ~QG8hT9iUmk4~DZvqgH3z~~ywKQ4-rEIut7d03SLMSyVHqLzjurZp24y~xheAe~jA__&Key-Pair-Id=KJVIX9H6ZFSIS" alt="image description">
-      </a>
-    </div>
-    <div class="image-container">
-      <a href="underconstruction">
-        <img class="my-img" src="https://dnka7ftzsecnu.cloudfront.net/LandingPictures/IMG_2172.JPG?Expires=1722470400&Signature=ejegvWz0fZaJCANJ4YCIfpk2vAWaYMW1-7RZl~UY6u-k5n0RBq5JM9H2xv2Da-F72rRTOTJWQFmbPneqlHod9gFxJEBObl6aXxg-ICDgu3MHSpBB-d-YiBc4Rw6TD3ccJY78UQgWZ2NLHigjao4FZAbfhOhd-fi6BTDCJbtTxlapakJAUGhqJ781JmhTWqBV6dP5IjOoadJU2IBnknS7d8J7LGOiUQOAuFSQYf2Tirlki0HBtz7XLaYjm1t9M2ZqZqePgRJFMmFUi7-6PBWOg~fYa7Q9zXoa0loy38o9QQqKSCRI4psbRrcO6Dx6qtPrij6aZrI7HmsCSAolVIX~ag__&Key-Pair-Id=KJVIX9H6ZFSIS" alt="image description">
-      </a>
-    </div>
-    <div class="image-container">
-      <a href="underconstruction">
-        <img class="my-img" src="https://dnka7ftzsecnu.cloudfront.net/LandingPictures/IMG_2161.JPG?Expires=1722470400&Signature=TJuKm7MLi3LS-RB1OyzFVBkFd7Cg3-7FgVWfNM~vDVK1NGga9LCefuncWrflkFe7YBt3gSTXEpoYKMHCmYmgfrKorwuYoTGpwsFzHqObLjgdrPe1UAME8eH4ypHPdLJonaz0CI90P9IgOdfKiLFsVp-6jmd9TpDlVY3VxrgzErxiaae3LJXQj40wZXH9BxbdtoQDmm4j9FPKdwsa1tTn~RIKkuP7e8hXUFVRcauIBT9wlvTWqpC1MxGHzVKqtcJggEWRGX6o9-2fJvpnz0oGyvNizwnC~Vj3lBeLHMdfyR8lICkR8cFVzn4JUiWmLAuwR5g1A0NDW1kW7Z4in~XQjw__&Key-Pair-Id=KJVIX9H6ZFSIS" alt="image description">
-      </a>
-    </div>
-    <div class="image-container">
-      <a href="underconstruction">
-        <img class="my-img" src="https://dnka7ftzsecnu.cloudfront.net/LandingPictures/IMG_2173.JPG?Expires=1722470400&Signature=oA6lHvbXC5VvfZEo6VxfUmQjjmVq-S9U1zQwsl5ts1Yx-O0Of48o-uE894C9g~ZCRmI2AdTSqc7ljkcQrMiuM~AtI4aRXz~5C-SwhPiGQvXZGAdygF4VwwycHqoCF6UPuh4miit~HXdlc4biOlzq3HptJIWTOULJvnSqhk9lqLb1GcFbgqKUrrX0ZgkWA1Gpq65~zwxBcxhjThvkC-yOiCwh8ejmU7Lo14akut3fYhVzHkcK5-cU3XAkSiFmCxAQ5f9LzD-FgR6DeZnd5Y8j40W1THVBEGgMdKqpErvNFeQ7TT4znEPCbErIboZe3qcifiwpRZrYHB-9bnfPofYhvg__&Key-Pair-Id=KJVIX9H6ZFSIS" alt="image description">
-      </a>
-    </div>
-    <div class="image-container">
-      <a href="underconstruction">
-        <img class="my-img" src="https://dnka7ftzsecnu.cloudfront.net/LandingPictures/IMG_2180.JPG?Expires=1722470400&Signature=cFhZoDF9pVRuYXOj80nBn95OD6w40PyS6f~lsLnXPWyOjTjSCRNHGXsUtvth-CXvkvMZGz8z6md6IbadDC3iSxzjhf~H-~Cjm60T0jJ440wEb2YkaYE38O53UHGEpFVgD63-23SYGFL1RtGdx8uFjlZYsgACuKO~Q2Ujk1t-sDKvs7r6pp~4GQ5opJ8o-21P~SzFfNBe61JXtd1VVwmYhiqXLSQPrCxW~fePuLRxuzqjYyIx0Kdbuh4jC1xeFNoN9FPzEomasQKkqGvYVgmOzPiaB8Z4ZOuBAFVTWlMlpvHGpNvYLIwOoX3rDu~QIxY-P6DpY4BW~ccr0A6Y5qMS0Q__&Key-Pair-Id=KJVIX9H6ZFSIS" alt="image description">
-      </a>
-    </div>
-    <div class="image-container">
-      <a href="underconstruction">
-        <img class="my-img" src="https://dnka7ftzsecnu.cloudfront.net/LandingPictures/IMG_2179.JPG?Expires=1722470400&Signature=p4D8OGZF0u1yZHgXNcf7mTzbZ371hxwnya-I5bpaS5dAiNvMAqmoNNvFXSARg5VkdzPVDgESKBMw6WJTJHc2MKDvnXlCPwwAXivhKK5jHHXRFpX5GWFt-TVYevepLOMboI5NqQ~s4vOKg55M4kqwmI5KZs1PH5FXnEgZJNWJjSpXYtHJ~wtImqVggu0OJtZBflsQXTyD7rM2v-Iqf4s~JyZAFqzis3Rnh3VodAtBwe6KymT1BjvMI5qpDjKEsk5O-mQvN9lZumUL6MHLufUx0nYBVOk~4uExYzE82KGHdUQlw2qPY--GRumEi2FEzQErHyjkDeD5OxpagYvEnlmutA__&Key-Pair-Id=KJVIX9H6ZFSIS" alt="image description">
-        <div class="caption">DUCE</div>
-      </a>
-    </div>
-    <div class="image-container">
-      <a href="underconstruction">
-        <img class="my-img" src="https://dnka7ftzsecnu.cloudfront.net/LandingPictures/IMG_2175.JPG?Expires=1722470400&Signature=C-XPonPAbKsL8UZ6h-RUal7wuq1qyEjhilp8ONokMfdVlxl~ZbMH-VNKO6zNhy6GKqXVG4bitIM4MWu5FX2HdLbk0HJfUMz0rORcxIU7rH~4oBe4R-6UKpTu5Mt4mdaSS6O8MTOIwlT44~htKuJYhbl75KWgdEkV6RkIUznX9L1ETGzPi9irlBzQIuUO4XDB8VOfmhnlUcBa8H361CazuTh5SkZhZALEK~MT32p85Y6HwxC2HcJsxL-pPXNl0tL6Me6GVeTmTcOh2uPaduhn0vLQ7jgFQNJf6cIWz~IH7Lk7x4CFSolfhEQMWDUPzhWmftXbx2U3JEKwdLHZCzkOwA__&Key-Pair-Id=KJVIX9H6ZFSIS" alt="image description">
-      </a>
-    </div>
-    <div class="image-container">
-      <a href="underconstruction">
-        <img class="my-img" src="https://dnka7ftzsecnu.cloudfront.net/LandingPictures/IMG_2177.JPG?Expires=1722470400&Signature=VhsnINIX49DudE8FkNw91EkIJc7GDhhEXwY69m37jSgcEO45r8F-tsM3ssR8a8PuSD6S~CrJbJu1lTiwLtXf~brAJHUzH59aXhLxF1InpnDd7TJ1L7AAO7Pves3jE96GTIKoPraJJXpO30zb-sYTuzSOKrc7KApiU8BIOPpHFeu1zxFx~c6mHgsT8aJQNbvA4Qmw~XmPFoqjf4mYdqV3X7ybBALaJ4PvkcPolWNzg2H15sT7FMD80OUnEXdg7zn4ZPxJs2rmCuRQ03sF2Yc8GQM~6EjKZL-NRjos6xwxcYLqAw0~-Ab46WOyCUtSvymOcqFKMpYKnOWmynuyyxkkVg__&Key-Pair-Id=KJVIX9H6ZFSIS" alt="image description">
-      </a>
-    </div>
-    <div class="image-container">
-      <a href="underconstruction">
-        <img class="my-img" src="https://dnka7ftzsecnu.cloudfront.net/LandingPictures/IMG_2176.JPG?Expires=1722470400&Signature=Z7ekQ9Mgl0WFlEptCCVYoWY7yMXW-MYNa0mJoJPLbDe6Y8Hem889WpeW18NfTpkQ6slpZQkwUH59mD5PgHzGpOoep3Rij6nGbuJiS~o2OOv1hkJUli0fbhqcrrIK56RudpqdtIqwbJhY1BglRX~zD5arU3whmjkv9xpaiC4XDh84FWh8AOZ54VZb2JauArMkw4CBpVIL4jFKMHUFn3o3mNyxfKKTGgy5OYyWT4aM3~VTV2WTY7R7nzRdcc-rT5q99ooNj6ijD0TBSWx05BJLtpre8vH3v71QKj6KD7XEwzzVd87r2G7fldl2jsG1N-h3tfB4kVb6b-p4PC16hutGmg__&Key-Pair-Id=KJVIX9H6ZFSIS" alt="image description">
-      </a>
+  <div class="card">
+    <div class="card-body">
+      <h2>Contact</h2>
+      <form method="POST">
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input type="email" class="form-control" id="email" placeholder="Enter Email" style="width: 95%;">
+          <small id="emailHelp" class="form-text text-muted">I'll never share your email with a third-party.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="name" class="form-control" id="name" placeholder="Enter Name" style="width: 95%;">
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message</label>
+          <input type="text" class="form-control" id="message" placeholder="Inquiry" style="width: 95%;">
+        </div>
+
+        <h4 id="response"></h4>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
     </div>
   </div>
   <footer>
-  <div class="footer-content">
-    <p class="footer-text">© 2023 Kamau Creations, LLC. All rights reserved.</p>
-  </div>
+    <div class="footer-content">
+      <p class="footer-text">© 2023 Kamau Creations, LLC. All rights reserved.</p>
+    </div>
   </footer>
-
-
+  
   <script>
     const menuToggle = document.querySelector('.menu-toggle');
     const sidebar = document.querySelector('.sidebar');
@@ -377,17 +373,6 @@
       imageContainerWrap.classList.remove('open');
     });
 
-    // Add touch event handling for mobile devices
-    const imageContainers = document.querySelectorAll('.image-container');
-    imageContainers.forEach(function(container) {
-      container.addEventListener('touchstart', function() {
-        container.classList.add('touch-hover');
-      });
-      container.addEventListener('touchend', function() {
-        container.classList.remove('touch-hover');
-      });
-    });
-
     // Make the hamburger menu persistent when scrolling
     window.addEventListener('scroll', function() {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -398,14 +383,41 @@
       }
     });
   </script>
-  <script>
-    const counter = document.querySelector(".counter-number");
-    async function updateCounter() {
-      let response = await fetch("https://eklb6vlsqsazknc4c4pvzaxemi0tytpe.lambda-url.us-east-1.on.aws/");
-      let data = await response.json();
-      counter.innerHTML = `Visits: ${data}`;
-    }
-    updateCounter();
-  </script>
+      <script>
+        (() => {
+          const form = document.querySelector('form');
+          const submitResponse = document.querySelector('#response');
+          const formURL = 'https:/API_REQUEST_URL';
+    
+          form.onsubmit = e => {
+            e.preventDefault();
+    
+            // Capture the form data
+            let data = {};
+            Array.from(form).map(input => (data[input.id] = input.value));
+            console.log('Sending: ', JSON.stringify(data));
+            submitResponse.innerHTML = 'Sending...'
+    
+            // Create the AJAX request
+            var xhr = new XMLHttpRequest();
+            xhr.open(form.method, formURL, true);
+            xhr.setRequestHeader('Accept', 'application/json; charset=utf-8');
+            xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+    
+            // Send the collected data as JSON
+            xhr.send(JSON.stringify(data));
+    
+            xhr.onloadend = response => {
+              if (response.target.status === 200) {
+                form.reset();
+                submitResponse.innerHTML = 'Form submitted. Success!';
+              } else {
+                submitResponse.innerHTML = 'Error! Please try again.';
+                console.error(JSON.parse(response));
+              }
+            };    
+          };
+        })();
+      </script>
 </body>
 </html>
