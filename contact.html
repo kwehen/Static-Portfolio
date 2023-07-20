@@ -314,34 +314,35 @@
   <div class="sidebar">
     <h2 class="subheading">Menu</h2>
     <ul>
-      <li><a href="contact">Contact Me</a></li>
+      <li><a href="portfolio">Home</a></li>
+      <li><a href="contact">Contact</a></li>
       <li><a href="underconstruction">Fashion</a></li>
       <li><a href="underconstruction">Street</a></li>
       <li><a href="underconstruction">Birthday's</a></li>
       <li><a href="underconstruction">Travel</a></li>
       <li><a href="underconstruction">Modeling</a></li>
-      <li><a href="underconstruction">NSFW</a></li>
+      <li><a href="underconstruction">Extras</a></li>
     </ul>
   </div>
 
   <div class="card">
     <div class="card-body">
-      <h2>Contact Me</h2>
+      <h2>Contact</h2>
       <form method="POST">
         <div class="form-group">
           <label for="email">Email address</label>
-          <input type="email" class="form-control" id="email" placeholder="Enter email" style="width: 95%;">
+          <input type="email" class="form-control" id="email" placeholder="Enter Email" style="width: 95%;">
           <small id="emailHelp" class="form-text text-muted">I'll never share your email with a third-party.</small>
         </div>
 
         <div class="form-group">
           <label for="name">Name</label>
-          <input type="name" class="form-control" id="name" placeholder="Your name" style="width: 95%;">
+          <input type="name" class="form-control" id="name" placeholder="Enter Name" style="width: 95%;">
         </div>
 
         <div class="form-group">
           <label for="message">Message</label>
-          <input type="text" class="form-control" id="message" placeholder="Tell me something" style="width: 95%;">
+          <input type="text" class="form-control" id="message" placeholder="Inquiry" style="width: 95%;">
         </div>
 
         <h4 id="response"></h4>
@@ -355,7 +356,6 @@
     </div>
   </footer>
   
-
   <script>
     const menuToggle = document.querySelector('.menu-toggle');
     const sidebar = document.querySelector('.sidebar');
@@ -387,7 +387,7 @@
         (() => {
           const form = document.querySelector('form');
           const submitResponse = document.querySelector('#response');
-          const formURL = 'API_REQUEST_URL';
+          const formURL = 'https:/API_REQUEST_URL';
     
           form.onsubmit = e => {
             e.preventDefault();
