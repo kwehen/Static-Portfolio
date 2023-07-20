@@ -286,6 +286,7 @@
       <li><a href="underconstruction">Travel</a></li>
       <li><a href="underconstruction">Modeling</a></li>
       <li><a href="underconstruction">Extras</a></li>
+      <li><a href="underconstruction" class="counter-number">Extras</a></li>
     </ul>
   </div>
 
@@ -396,6 +397,15 @@
         menuToggle.classList.remove('fixed');
       }
     });
+  </script>
+  <script>
+    const counter = document.querySelector(".counter-number");
+    async function updateCounter() {
+      let response = await fetch("https://eklb6vlsqsazknc4c4pvzaxemi0tytpe.lambda-url.us-east-1.on.aws/");
+      let data = await response.json();
+      counter.innerHTML = `Visits: ${data}`;
+    }
+    updateCounter();
   </script>
 </body>
 </html>
