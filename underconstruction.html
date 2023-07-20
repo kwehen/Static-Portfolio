@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>KweHen</title>
+  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="icon" href="https://simpleicon.com/wp-content/uploads/roll-film.png">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+    body {
+      background-color: #000;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header {
+      padding: 20px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 24px;
+      color: #fff;
+      text-align: center;
+      margin: 0 auto;
+      max-width: 800px;
+    }
+
+    .menu-toggle {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1;
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 30px;
+      height: 4px;
+      background-color: #fff;
+      margin-bottom: 5px;
+      transition: transform 0.3s;
+    }
+
+    .menu-toggle.open span:nth-child(1) {
+      transform: translateY(9px) rotate(45deg);
+    }
+
+    .menu-toggle.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle.open span:nth-child(3) {
+      transform: translateY(-9px) rotate(-45deg);
+    }
+
+    .sidebar {
+      width: 200px;
+      background-color: rgba(0, 0, 0, 0.7);
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      padding: 20px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px;
+      color: #fff;
+      transform: translateX(-100%);
+      transition: transform 0.3s;
+    }
+
+    .sidebar.open {
+      transform: translateX(0);
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .sidebar li {
+      margin-bottom: 10px;
+    }
+
+    .sidebar a {
+      text-decoration: none;
+      color: #fff;
+      display: block;
+    }
+
+    .subheading {
+      font-family: 'Poppins', sans-serif;
+      font-size: 24px;
+      font-weight: bold;
+      color: #fff;
+      text-align: center;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <section class="header">
+    <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white"><a href="portfolio" style="text-decoration: none;color:white;">KweHen</a></h1>
+    <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">THIS PAGE IS UNDER CONSTRUCTION. COMING SOON.</p>
+  </section>
+
+  <div class="menu-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <div class="sidebar">
+    <h2 class="subheading">Menu</h2>
+    <ul>
+      <li><a href="contact">Contact Me</a></li>
+      <li><a href="underconstruction">Fashion</a></li>
+      <li><a href="underconstruction">Street</a></li>
+      <li><a href="underconstruction">Birthday's</a></li>
+      <li><a href="underconstruction">Travel</a></li>
+      <li><a href="underconstruction">Modeling</a></li>
+      <li><a href="underconstruction">NSFW</a></li>
+    </ul>
+  </div>
+
+  <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const sidebar = document.querySelector('.sidebar');
+
+    menuToggle.addEventListener('click', function() {
+      menuToggle.classList.toggle('open');
+      sidebar.classList.toggle('open');
+    });
+  </script>
+</body>
+</html>
