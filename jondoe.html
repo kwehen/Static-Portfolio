@@ -284,6 +284,34 @@
       max-width: 800px;
       margin-top: 20px;
     }
+
+    .popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+  }
+
+  .popup img.enlarged {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    transition: 0.3ms;
+  }
+
+  .popup-close-btn {
+    color: #fff;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 40px;
+    cursor: pointer;
+    padding: 10px;
+  }
     
     .footer-content {
       display: flex;
@@ -330,44 +358,32 @@
 
   <div class="image-container-wrap">
     <div class="image-container">
-      <a href="https://photos.kwehen.com/LandingPictures/IMG_2164.JPG?Expires=1722470400&Signature=xk8If0R1HoyolXzzbtczzt56i1z9z44owzQbIe7vKb4FfM9s~rjJlbnERSlcHEIuQzY5GEW3aqZoMKSDuJi7oDqL~Qfwowi9HFKtcoDvRiJDRnztiPnyoP9liZTliOewzRzbNiHt1QhgyEWvqS0-RSwKvA68CeW25Ar6e80EgsfniNeCBnZwzKrSV3CTgWXjQPOi3k6RK1oVVj2GqrVlbLoaqljWOHLz50iR08Dzc6RRIyjPFNF7mxlWdli6htBWmY022nCJWdlyHOf0hnE5Ffmu361-qH0r66RL0DNKPwI~neCCm7VHJkIQSmUMGv3Fle~OPTeJAzHNmITZD2KRxQ__&Key-Pair-Id=KJVIX9H6ZFSIS">
         <img class="my-img" src="https://photos.kwehen.com/LandingPictures/IMG_2164.JPG?Expires=1722470400&Signature=xk8If0R1HoyolXzzbtczzt56i1z9z44owzQbIe7vKb4FfM9s~rjJlbnERSlcHEIuQzY5GEW3aqZoMKSDuJi7oDqL~Qfwowi9HFKtcoDvRiJDRnztiPnyoP9liZTliOewzRzbNiHt1QhgyEWvqS0-RSwKvA68CeW25Ar6e80EgsfniNeCBnZwzKrSV3CTgWXjQPOi3k6RK1oVVj2GqrVlbLoaqljWOHLz50iR08Dzc6RRIyjPFNF7mxlWdli6htBWmY022nCJWdlyHOf0hnE5Ffmu361-qH0r66RL0DNKPwI~neCCm7VHJkIQSmUMGv3Fle~OPTeJAzHNmITZD2KRxQ__&Key-Pair-Id=KJVIX9H6ZFSIS">
-      </a>
     </div>
     <div class="image-container">
-      <a href="https://photos.kwehen.com/JonDoe/001706910008%202.jpg?Expires=1722470400&Signature=C2xT9-DDbDbCrWwZcGxMW39UdA77CeKMiFzJ8gtKrOwU79hwIE53DcwwVxZ5J0jTSslOCApxWOvwxKf8EO04ig6v-O-6Ka-el19GXnSHafAANRw1iS8MXB7SnaQ2OvkDQbNDIn0cjpym4NOF~prArxer2DvK2lJyV-k5CY26zcnJcKpYhmhIOcSvfpc0vwHiIihVVBOFf7kY7P3mqqIkbWuFGGPIzaazRfaRxNObWRtCgwz3xwAjFVnJK59h6fTR~jiz20-prEAOGz1e63KmYnQ8Al5ezqQ3XgE7TrkvS7kAarMTp6PX3~tjBeqeIvrcPKyhniurS4TgdbRaIr939g__&Key-Pair-Id=KJVIX9H6ZFSIS">
         <img class="my-img" src="https://photos.kwehen.com/JonDoe/001706910008%202.jpg?Expires=1722470400&Signature=C2xT9-DDbDbCrWwZcGxMW39UdA77CeKMiFzJ8gtKrOwU79hwIE53DcwwVxZ5J0jTSslOCApxWOvwxKf8EO04ig6v-O-6Ka-el19GXnSHafAANRw1iS8MXB7SnaQ2OvkDQbNDIn0cjpym4NOF~prArxer2DvK2lJyV-k5CY26zcnJcKpYhmhIOcSvfpc0vwHiIihVVBOFf7kY7P3mqqIkbWuFGGPIzaazRfaRxNObWRtCgwz3xwAjFVnJK59h6fTR~jiz20-prEAOGz1e63KmYnQ8Al5ezqQ3XgE7TrkvS7kAarMTp6PX3~tjBeqeIvrcPKyhniurS4TgdbRaIr939g__&Key-Pair-Id=KJVIX9H6ZFSIS">
-      </a>
     </div>
     <div class="image-container">
-      <a href="https://photos.kwehen.com/JonDoe/001706910021%202.jpg?Expires=1722470400&Signature=1ZMNrbxQ9xM9Q4uxZlc7YCa-2B7kiSEWWQXDPpyoPBgp3SZT~eo8PUIo7Ov3Q4tsEpmmyBd~VoDM54Ss4smLO-K01f9dlwsdODL1ofpzQalc6yPaTEZC7fso4BXiU9ZYSlALAVibVomjgplEE~MUjeclJ0Fq8-sr2Y1wzXYa320L5UZYCZ6v3ibiEA~0EvZSxFfvU0qt~Ho79keJ1NvF-HDr8Vbpg1rt-GticYklKiz~yOwwG0CgDwavWJWDQIvJxM8EIssSz8Jiy2o62OfpCuCxph3wzxEzuZTKQvvxkFMEMIuisi5bMvbITzOzItNiJcCrVqmTeNUa4KPO419LXg__&Key-Pair-Id=KJVIX9H6ZFSIS">
         <img class="my-img" src="https://photos.kwehen.com/JonDoe/001706910021%202.jpg?Expires=1722470400&Signature=1ZMNrbxQ9xM9Q4uxZlc7YCa-2B7kiSEWWQXDPpyoPBgp3SZT~eo8PUIo7Ov3Q4tsEpmmyBd~VoDM54Ss4smLO-K01f9dlwsdODL1ofpzQalc6yPaTEZC7fso4BXiU9ZYSlALAVibVomjgplEE~MUjeclJ0Fq8-sr2Y1wzXYa320L5UZYCZ6v3ibiEA~0EvZSxFfvU0qt~Ho79keJ1NvF-HDr8Vbpg1rt-GticYklKiz~yOwwG0CgDwavWJWDQIvJxM8EIssSz8Jiy2o62OfpCuCxph3wzxEzuZTKQvvxkFMEMIuisi5bMvbITzOzItNiJcCrVqmTeNUa4KPO419LXg__&Key-Pair-Id=KJVIX9H6ZFSIS">
-      </a>
     </div>
     <div class="image-container">
-      <a href="https://photos.kwehen.com/JonDoe/001706910012%202.JPG?Expires=1722470400&Signature=o4MB3D8sWhnR88FDjFL1STVUVB1tZYKQuJABgQAr9EsWXM8zM3WTKYiIY822rZAR3JGTGKdL1T7ZWLKNxBzI4OepHc8oPrUbFVw76GKmxuU2aOiLr5lUjIsBANxYqaN8mXJgfYYQrpcUl1d90FpfxvM4WwyxO~tLOAoaq6bOVxduc3htW-WD0vE0epHmZ9VkVgoPgw0MrnrjgGbHSRWCprXQtVTZQkiEC~9bNZYDeCA-prnz41YlWrFbL~gBM~UMzbl9hH3UFEBjh-MrgijkdlhYHlJVmyacOVCYORLJT0oiL8k4uI7MaT86NwhXT-t3GcCiWaYflfFS8KQIdxHabw__&Key-Pair-Id=KJVIX9H6ZFSIS">
         <img class="my-img" src="https://photos.kwehen.com/JonDoe/001706910012%202.JPG?Expires=1722470400&Signature=o4MB3D8sWhnR88FDjFL1STVUVB1tZYKQuJABgQAr9EsWXM8zM3WTKYiIY822rZAR3JGTGKdL1T7ZWLKNxBzI4OepHc8oPrUbFVw76GKmxuU2aOiLr5lUjIsBANxYqaN8mXJgfYYQrpcUl1d90FpfxvM4WwyxO~tLOAoaq6bOVxduc3htW-WD0vE0epHmZ9VkVgoPgw0MrnrjgGbHSRWCprXQtVTZQkiEC~9bNZYDeCA-prnz41YlWrFbL~gBM~UMzbl9hH3UFEBjh-MrgijkdlhYHlJVmyacOVCYORLJT0oiL8k4uI7MaT86NwhXT-t3GcCiWaYflfFS8KQIdxHabw__&Key-Pair-Id=KJVIX9H6ZFSIS">
-      </a>
     </div>
     <div class="image-container">
-      <a href="https://photos.kwehen.com/JonDoe/001706910024%202.JPG?Expires=1722470400&Signature=iY7wvQikFx0iPIef5JmKUOeckDFFs2rdr5gkK7bjpgIP4F8jhs4npUvI1AlsRmZ-~R0vLUfPN1mLjXkP93AUwoj9JIG1Kcqa0bZtJlQsGAe0HrzH1pfrldsgpg9Ac7~AH3qrsH3d13AtgXaDfZgQAtfqPwq01kcscvMFNSnfPIk3fdTm~poBcu5YJXSyyGbcNHP6McwGkkDmS7QuLiHLYB3lnDsJceBIzSfvDj~JrJIvNJJNkplxULm3lLBHm1C9GcZZthHqpJTKtH68hi97nBfjARNiSKh6-vBA~j3OH5-849cFYgfz-Deg5mAz1O-dEXT0bfGnLiIl00LcCPjzJA__&Key-Pair-Id=KJVIX9H6ZFSIS">
         <img class="my-img" src="https://photos.kwehen.com/JonDoe/001706910024%202.JPG?Expires=1722470400&Signature=iY7wvQikFx0iPIef5JmKUOeckDFFs2rdr5gkK7bjpgIP4F8jhs4npUvI1AlsRmZ-~R0vLUfPN1mLjXkP93AUwoj9JIG1Kcqa0bZtJlQsGAe0HrzH1pfrldsgpg9Ac7~AH3qrsH3d13AtgXaDfZgQAtfqPwq01kcscvMFNSnfPIk3fdTm~poBcu5YJXSyyGbcNHP6McwGkkDmS7QuLiHLYB3lnDsJceBIzSfvDj~JrJIvNJJNkplxULm3lLBHm1C9GcZZthHqpJTKtH68hi97nBfjARNiSKh6-vBA~j3OH5-849cFYgfz-Deg5mAz1O-dEXT0bfGnLiIl00LcCPjzJA__&Key-Pair-Id=KJVIX9H6ZFSIS">
-      </a>
     </div>
     <div class="image-container">
-      <a href="https://photos.kwehen.com/JonDoe/001706910026%202.jpg?Expires=1722470400&Signature=O~vNhppPliC3oF5sAMj6PNqhSWBdY-SgiAaxp3aL~YfDVWLVnwG25MsYN8YBjyW1fQq3iabzaHpj3HOEck-MCnKjTldr~sD-vxahcREZpTyq1pRrLnRUrjV99xZhGkH27YPWAdbUHczILOHu1eLdqzhNONUUSO4EiQTGO~rj43FgC8l1-CG0iXTEjGcDxoEIn4pjWUA4OxudjbdZ79rg2-9IGktKQ1uUqiGQlL1klowcG1tQVcMlUFsxnn~YPCJvwA5Kz4FwAtv9Kpd-zP4lpEE-qOXjP3vd9Xi-zNO~C7lYiix~2yghZKTsKhouJ8Z~mxXtSZn31r2RauawrIsX0Q__&Key-Pair-Id=KJVIX9H6ZFSIS">
         <img class="my-img" src="https://photos.kwehen.com/JonDoe/001706910026%202.jpg?Expires=1722470400&Signature=O~vNhppPliC3oF5sAMj6PNqhSWBdY-SgiAaxp3aL~YfDVWLVnwG25MsYN8YBjyW1fQq3iabzaHpj3HOEck-MCnKjTldr~sD-vxahcREZpTyq1pRrLnRUrjV99xZhGkH27YPWAdbUHczILOHu1eLdqzhNONUUSO4EiQTGO~rj43FgC8l1-CG0iXTEjGcDxoEIn4pjWUA4OxudjbdZ79rg2-9IGktKQ1uUqiGQlL1klowcG1tQVcMlUFsxnn~YPCJvwA5Kz4FwAtv9Kpd-zP4lpEE-qOXjP3vd9Xi-zNO~C7lYiix~2yghZKTsKhouJ8Z~mxXtSZn31r2RauawrIsX0Q__&Key-Pair-Id=KJVIX9H6ZFSIS">
-      </a>
     </div>
     <div class="image-container">
-      <a href="https://photos.kwehen.com/JonDoe/001706910015%202.jpg?Expires=1722470400&Signature=mcMy8V~I6lUFuetaGi7InuAEagDVyBfCZv2nyD-54ys-uZZ0fnpb53~Nbs0LmpbAn~IGrOJ6RXYfHSoqZ-T3ifRBMKWk10qbwPQ5cbP4MwIzuKWS6rPO2sOsriwOClBYJua3Eb-HH7RcNlgG-sIC4Ac4L-pJH4yObWYDHkybI1V6ebfk5tBvq5Df8Ray8mNuHvh1ZL19XpvVyfiOaODTtGW1ixxPtNN85ezc27RMznwe~mulWI2Q~i2DqfbmUFFiv49Zh8pWlrxxb0UyRwvXbA3BKvWJi5SQ6zosksoEajOPEmyzKAxjzMTTqthdguPqsHZcflgzX4CM-Jp4lMdL2w__&Key-Pair-Id=KJVIX9H6ZFSIS">
         <img class="my-img" src="https://photos.kwehen.com/JonDoe/001706910015%202.jpg?Expires=1722470400&Signature=mcMy8V~I6lUFuetaGi7InuAEagDVyBfCZv2nyD-54ys-uZZ0fnpb53~Nbs0LmpbAn~IGrOJ6RXYfHSoqZ-T3ifRBMKWk10qbwPQ5cbP4MwIzuKWS6rPO2sOsriwOClBYJua3Eb-HH7RcNlgG-sIC4Ac4L-pJH4yObWYDHkybI1V6ebfk5tBvq5Df8Ray8mNuHvh1ZL19XpvVyfiOaODTtGW1ixxPtNN85ezc27RMznwe~mulWI2Q~i2DqfbmUFFiv49Zh8pWlrxxb0UyRwvXbA3BKvWJi5SQ6zosksoEajOPEmyzKAxjzMTTqthdguPqsHZcflgzX4CM-Jp4lMdL2w__&Key-Pair-Id=KJVIX9H6ZFSIS">
-      </a>
     </div>
     <div class="image-container">
-      <a href="https://photos.kwehen.com/JonDoe/001706910018%202.jpg?Expires=1722470400&Signature=Yvh8CiFHLI5KB8EG1GHO-NodAFpXgZiHmSEobWux6r-MkggheKKKTI8KehPP06J-Nvrl7GauSLAiM058mzldZLps9f8iNzsDvf6zVxbs81R8D3iKG4vQDC306q7-dmmxAyLO-m02OtM4HTM2aKSDrqIhVpIVbfc7KQDQ2zZfQgrL1-InEXgOSWxqTWt7tj5WycLWA8gVAawYI4N22MCskSxs0hygC3zco1JDYPi777S1vxAeo07Bx7yFftqbM5FoCqh~FfVkqVLAlnIWLsahWSFzSpXMQH9dKQulo0IXk8sjc23TS-pFKyp1yJ2BGpU1QBFowqb6RzzRyLxBtn4MDg__&Key-Pair-Id=KJVIX9H6ZFSIS">
         <img class="my-img" src="https://photos.kwehen.com/JonDoe/001706910018%202.jpg?Expires=1722470400&Signature=Yvh8CiFHLI5KB8EG1GHO-NodAFpXgZiHmSEobWux6r-MkggheKKKTI8KehPP06J-Nvrl7GauSLAiM058mzldZLps9f8iNzsDvf6zVxbs81R8D3iKG4vQDC306q7-dmmxAyLO-m02OtM4HTM2aKSDrqIhVpIVbfc7KQDQ2zZfQgrL1-InEXgOSWxqTWt7tj5WycLWA8gVAawYI4N22MCskSxs0hygC3zco1JDYPi777S1vxAeo07Bx7yFftqbM5FoCqh~FfVkqVLAlnIWLsahWSFzSpXMQH9dKQulo0IXk8sjc23TS-pFKyp1yJ2BGpU1QBFowqb6RzzRyLxBtn4MDg__&Key-Pair-Id=KJVIX9H6ZFSIS">
-      </a>
+    </div>
+    <div class="popup">
+      <span class="popup-close-btn">&times;</span>
+      <img class="enlarged" src="https://photos.kwehen.com/LandingPictures/IMG_2164.JPG?Expires=1722470400&Signature=xk8If0R1HoyolXzzbtczzt56i1z9z44owzQbIe7vKb4FfM9s~rjJlbnERSlcHEIuQzY5GEW3aqZoMKSDuJi7oDqL~Qfwowi9HFKtcoDvRiJDRnztiPnyoP9liZTliOewzRzbNiHt1QhgyEWvqS0-RSwKvA68CeW25Ar6e80EgsfniNeCBnZwzKrSV3CTgWXjQPOi3k6RK1oVVj2GqrVlbLoaqljWOHLz50iR08Dzc6RRIyjPFNF7mxlWdli6htBWmY022nCJWdlyHOf0hnE5Ffmu361-qH0r66RL0DNKPwI~neCCm7VHJkIQSmUMGv3Fle~OPTeJAzHNmITZD2KRxQ__&Key-Pair-Id=KJVIX9H6ZFSIS">
     </div>
   </div>
   <footer>
@@ -377,22 +393,27 @@
   </footer>
 
   <script>
-    const menuToggle = document.querySelector('.menu-toggle');
-    const sidebar = document.querySelector('.sidebar');
-    const imageContainerWrap = document.querySelector('.image-container-wrap');
+  const thumbnails = document.querySelectorAll('.my-img');
+  const popup = document.querySelector('.popup');
+  const enlargedImage = document.querySelector('.enlarged');
+  const closeBtn = document.querySelector('.popup-close-btn');
 
-    menuToggle.addEventListener('click', function() {
-      menuToggle.classList.toggle('open');
-      sidebar.classList.toggle('open');
-      imageContainerWrap.classList.toggle('open');
+  thumbnails.forEach((thumbnail) => {
+    thumbnail.addEventListener('click', (event) => {
+      event.preventDefault();
+      const src = event.target.src;
+      enlargedImage.src = src;
+      popup.style.display = 'block';
+      document.body.classList.add('no-scroll');
     });
+  });
 
-    imageContainerWrap.addEventListener('click', function() {
-      menuToggle.classList.remove('open');
-      sidebar.classList.remove('open');
-      imageContainerWrap.classList.remove('open');
-    });
-
+  closeBtn.addEventListener('click', () => {
+    popup.style.display = 'none';
+    document.body.classList.remove('no-scroll');
+  });
+</script>
+<script>
     // Add touch event handling for mobile devices
     const imageContainers = document.querySelectorAll('.image-container');
     imageContainers.forEach(function(container) {
@@ -414,5 +435,22 @@
       }
     });
   </script>
+  <script>
+  const menuToggle = document.querySelector('.menu-toggle');
+  const sidebar = document.querySelector('.sidebar');
+  const imageContainerWrap = document.querySelector('.image-container-wrap');
+
+  menuToggle.addEventListener('click', function() {
+    menuToggle.classList.toggle('open');
+    sidebar.classList.toggle('open');
+    imageContainerWrap.classList.toggle('open');
+  });
+
+  imageContainerWrap.addEventListener('click', function() {
+    menuToggle.classList.remove('open');
+    sidebar.classList.remove('open');
+    imageContainerWrap.classList.remove('open');
+  });
+</script>
 </body>
 </html>
