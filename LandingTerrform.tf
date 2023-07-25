@@ -21,43 +21,43 @@ resource "aws_s3_bucket_public_access_block" "kwehen-access-block" {
 
 resource "aws_s3_object" "index" {
   bucket = aws_s3_bucket.kwehen1.id
-  key    = "index.html"
-  source = "/Users/kwehen/Desktop/AWS/Static Portfolio/index.html"
+  key    = "index"
+  source = "C:/Users/is00kxh/Desktop/Work Study/Storefront/index.html"
   content_type = "text/html"
 }
 
 resource "aws_s3_object" "error" {
   bucket = aws_s3_bucket.kwehen1.id
-  key    = "404.html"
-  source = "/Users/kwehen/Desktop/AWS/Static Portfolio/404.html"
+  key    = "404"
+  source = "C:/Users/is00kxh/Desktop/Work Study/Storefront/404.html"
   content_type = "text/html"
 }
 
 resource "aws_s3_object" "portfolio" {
   bucket = aws_s3_bucket.kwehen1.id
-  key = "portfolio.html"
-  source = "/Users/kwehen/Desktop/AWS/Static Portfolio/portfolio.html"
+  key = "portfolio"
+  source = "C:/Users/is00kxh/Desktop/Work Study/Storefront/portfolio.html"
   content_type = "text/html"
 }
 
 resource "aws_s3_object" "under-construction" {
   bucket = aws_s3_bucket.kwehen1.id
-  key = "underconstruction.html"
-  source = "/Users/kwehen/Desktop/AWS/Static Portfolio/underconstruction.html"
+  key = "underconstruction"
+  source = "C:/Users/is00kxh/Desktop/Work Study/Storefront/underconstruction.html"
   content_type = "text/html"
 }
 
 resource "aws_s3_object" "Jon-Doe" {
   bucket = aws_s3_bucket.kwehen1.id
-  key = "jondoe.html"
-  source = "/Users/kwehen/Desktop/AWS/Static Portfolio/jondoe.html"
+  key = "jondoe"
+  source = "C:/Users/is00kxh/Desktop/Work Study/Storefront/jondoe.html"
   content_type = "text/html"
 }
 
-resource "aws_s3_object" "Contact" {
+resource "aws_s3_object" "Contact-Side" {
   bucket = aws_s3_bucket.kwehen1.id
-  key = "contact.html"
-  source = "/Users/kwehen/Desktop/AWS/Static Portfolio//contact.html"
+  key = "contact"
+  source = "C:/Users/is00kxh/Desktop/Work Study/Storefront/contact.html"
   content_type = "text/html"
 }
 
@@ -98,11 +98,11 @@ resource "aws_s3_bucket_website_configuration" "kwehen-config" {
   bucket = aws_s3_bucket.kwehen1.id
 
   index_document {
-    suffix = "index.html"
+    suffix = "index"
   }
 
   error_document {
-    key = "404.html"
+    key = "404"
   }
 }
 
@@ -167,7 +167,8 @@ resource "aws_cloudfront_distribution" "kwehen-cf" {
   enabled = true
   is_ipv6_enabled = false
   comment = "kwehen-cf"
-  default_root_object = "index.html"
+  default_root_object = "index"
+  aliases = [ "<DOMIAN NAME>" ]
 
   default_cache_behavior {
     cache_policy_id = aws_cloudfront_cache_policy.S3-Optimized.id
@@ -178,7 +179,9 @@ resource "aws_cloudfront_distribution" "kwehen-cf" {
     }
   
   viewer_certificate {
-    cloudfront_default_certificate = true
+    acm_certificate_arn = "<CERTIFICATE_ID>"
+    minimum_protocol_version = "TLSv1.2_2021"
+    ssl_support_method = "sni-only"
   }
 
   restrictions {
@@ -187,6 +190,19 @@ resource "aws_cloudfront_distribution" "kwehen-cf" {
       locations        = ["US", "CA", "GB", "DE", "IN", "IR", "JM"]
     }
   }
+}
+
+resource "aws_route53_record" "kwehen" {
+  zone_id = "<RECORD_ID>"
+  name = "kwehen.com"
+  type = "A"
+
+  alias {
+    name = aws_cloudfront_distribution.kwehen-cf.domain_name
+    zone_id = aws_cloudfront_distribution.kwehen-cf.hosted_zone_id
+    evaluate_target_health = false
+  }
+
 }
 
 output "cloudfront_domain_name" {
