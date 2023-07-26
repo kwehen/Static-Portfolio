@@ -194,7 +194,7 @@ resource "aws_cloudfront_distribution" "kwehen-cf" {
 
 resource "aws_route53_record" "kwehen" {
   zone_id = "<RECORD_ID>"
-  name = "kwehen.com"
+  name = "<DOMAIN_NAME>"
   type = "A"
 
   alias {
