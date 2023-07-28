@@ -157,6 +157,14 @@ resource "aws_cloudfront_cache_policy" "S3-Optimized" {
   }
 }
 
+resource "aws_cloudfront_function" "CF_Redirect" {
+  name = "CF_Redirect"
+  runtime = "cloudfront-js-1.0"
+  comment = "Function to Redirect to Domain Name"
+  publish = true
+  code = file("/path/to/file/cf-function.js")
+}
+
 resource "aws_cloudfront_distribution" "kwehen-cf" {
   origin {
     domain_name = aws_s3_bucket.kwehen1.bucket_regional_domain_name
@@ -176,6 +184,11 @@ resource "aws_cloudfront_distribution" "kwehen-cf" {
     viewer_protocol_policy = "redirect-to-https"
     cached_methods = ["GET", "HEAD"]
     target_origin_id = local.s3_origin_id
+
+    function_association {
+    event_type = "viewer-request"
+    function_arn = aws_cloudfront_function.CF_Redirect.arn
+    }
     }
   
   viewer_certificate {
