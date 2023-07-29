@@ -22,42 +22,42 @@ resource "aws_s3_bucket_public_access_block" "kwehen-access-block" {
 resource "aws_s3_object" "index" {
   bucket = aws_s3_bucket.kwehen1.id
   key    = "index"
-  source = "C:/Users/is00kxh/Desktop/Work Study/Storefront/index.html"
+  source = "/Users/kwehen/Desktop/AWS/Static Portfolio/index.html"
   content_type = "text/html"
 }
 
 resource "aws_s3_object" "error" {
   bucket = aws_s3_bucket.kwehen1.id
   key    = "404"
-  source = "C:/Users/is00kxh/Desktop/Work Study/Storefront/404.html"
+  source = "/Users/kwehen/Desktop/AWS/Static Portfolio/404.html"
   content_type = "text/html"
 }
 
 resource "aws_s3_object" "portfolio" {
   bucket = aws_s3_bucket.kwehen1.id
   key = "portfolio"
-  source = "C:/Users/is00kxh/Desktop/Work Study/Storefront/portfolio.html"
+  source = "/Users/kwehen/Desktop/AWS/Static Portfolio/portfolio.html"
   content_type = "text/html"
 }
 
 resource "aws_s3_object" "under-construction" {
   bucket = aws_s3_bucket.kwehen1.id
   key = "underconstruction"
-  source = "C:/Users/is00kxh/Desktop/Work Study/Storefront/underconstruction.html"
+  source = "/Users/kwehen/Desktop/AWS/Static Portfolio/underconstruction.html"
   content_type = "text/html"
 }
 
 resource "aws_s3_object" "Jon-Doe" {
   bucket = aws_s3_bucket.kwehen1.id
   key = "jondoe"
-  source = "C:/Users/is00kxh/Desktop/Work Study/Storefront/jondoe.html"
+  source = "/Users/kwehen/Desktop/AWS/Static Portfolio/jondoe.html"
   content_type = "text/html"
 }
 
 resource "aws_s3_object" "Contact-Side" {
   bucket = aws_s3_bucket.kwehen1.id
   key = "contact"
-  source = "C:/Users/is00kxh/Desktop/Work Study/Storefront/contact.html"
+  source = "/Users/kwehen/Desktop/AWS/Static Portfolio/contact.html"
   content_type = "text/html"
 }
 
