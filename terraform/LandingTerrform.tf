@@ -61,6 +61,33 @@ resource "aws_s3_object" "Contact-Side" {
   content_type = "text/html"
 }
 
+resource "aws_s3_object" "Chamberlain" {
+  bucket = aws_s3_bucket.kwehen1.id
+  key = "chamberlain"
+  source = "/Users/kwehen/Desktop/AWS/Static Portfolio/chamberlain.html"
+  content_type = "text/html"
+}
+
+resource "aws_s3_object" "London" {
+  bucket = aws_s3_bucket.kwehen1.id
+  key = "london"
+  source = "/Users/kwehen/Desktop/AWS/Static Portfolio/london.html"
+  content_type = "text/html"
+}
+
+resource "aws_s3_object" "PELondon" {
+  bucket = aws_s3_bucket.kwehen1.id
+  key = "pelondon"
+  source = "/Users/kwehen/Desktop/AWS/Static Portfolio/pelondon.html"
+  content_type = "text/html"
+}
+
+resource "aws_s3_object" "Jacks" {
+  bucket = aws_s3_bucket.kwehen1.id
+  key = "jacks"
+  source = "/Users/kwehen/Desktop/AWS/Static Portfolio/jacks.html"
+  content_type = "text/html"
+}
 
 resource "aws_s3_bucket_policy" "kwehen-policy" {
   bucket = aws_s3_bucket.kwehen1.id
@@ -104,10 +131,6 @@ resource "aws_s3_bucket_website_configuration" "kwehen-config" {
   error_document {
     key = "404"
   }
-}
-
-output "bucket_domain_name" {
-  value = aws_s3_bucket.kwehen1.website_endpoint
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "kwehen-encryption" {
@@ -157,12 +180,12 @@ resource "aws_cloudfront_cache_policy" "S3-Optimized" {
   }
 }
 
-resource "aws_cloudfront_function" "CF_Redirect" {
-  name = "CF_Redirect"
+resource "aws_cloudfront_function" "CF-Redirect" {
+  name = "CF-Redirect"
   runtime = "cloudfront-js-1.0"
   comment = "Function to Redirect to Domain Name"
   publish = true
-  code = file("/path/to/file/cf-function.js")
+  code = file("/Users/kwehen/Desktop/AWS/Static Portfolio/cf-function.js")
 }
 
 resource "aws_cloudfront_distribution" "kwehen-cf" {
@@ -176,7 +199,7 @@ resource "aws_cloudfront_distribution" "kwehen-cf" {
   is_ipv6_enabled = false
   comment = "kwehen-cf"
   default_root_object = "index"
-  aliases = [ "<DOMIAN NAME>" ]
+  aliases = [ "${var.domain_name}" ]
 
   default_cache_behavior {
     cache_policy_id = aws_cloudfront_cache_policy.S3-Optimized.id
@@ -187,12 +210,12 @@ resource "aws_cloudfront_distribution" "kwehen-cf" {
 
     function_association {
     event_type = "viewer-request"
-    function_arn = aws_cloudfront_function.CF_Redirect.arn
+    function_arn = aws_cloudfront_function.CF-Redirect.arn
     }
     }
   
   viewer_certificate {
-    acm_certificate_arn = "<CERTIFICATE_ID>"
+    acm_certificate_arn = var.certificate_id
     minimum_protocol_version = "TLSv1.2_2021"
     ssl_support_method = "sni-only"
   }
@@ -206,8 +229,8 @@ resource "aws_cloudfront_distribution" "kwehen-cf" {
 }
 
 resource "aws_route53_record" "kwehen" {
-  zone_id = "<RECORD_ID>"
-  name = "<DOMAIN_NAME>"
+  zone_id = "${var.record_id}"
+  name = "${var.domain_name}"
   type = "A"
 
   alias {
