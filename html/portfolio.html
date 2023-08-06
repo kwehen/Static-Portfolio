@@ -400,7 +400,7 @@
   <script>
     const counter = document.querySelector(".counter-number");
     async function updateCounter() {
-      let response = await fetch("https://eklb6vlsqsazknc4c4pvzaxemi0tytpe.lambda-url.us-east-1.on.aws/");
+      let response = await fetch("visit.counter.url");
       let data = await response.json();
       counter.innerHTML = `Visits: ${data}`;
     }
