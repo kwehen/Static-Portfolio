@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>KweHen</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="icon" href="https://simpleicon.com/wp-content/uploads/roll-film.png">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+    /* Page Styles */
+    body {
+      background-color: #000;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Header Styles */
+    .header {
+      padding: 20px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 24px;
+      color: #fff; /* Set the text color to white */
+      text-align: center; /* Center the text */
+      margin: 0 auto; /* Center the header horizontally */
+      max-width: 800px; /* Set a maximum width for the header */
+    }
+
+    .header h1 {
+      margin-bottom: 10px;
+      font-size: 40px;
+      font-weight: bold;
+      line-height: 1;
+    }
+
+    .header p {
+      margin-bottom: 20px;
+      font-size: 18px;
+      font-weight: normal;
+      color: #aaa;
+    }
+
+    /* Sidebar Styles */
+    .sidebar {
+      width: 20%;
+      background-color: rgba(0, 0, 0, 0.7); /* Set the background-color to black with transparency */
+      float: left;
+      padding: 10px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px;
+      color: #fff; /* Set the text color to white */
+      margin-right: 5px; /* Add smaller right margin for sidebar */
+      height: calc(100vh - 40px); /* Set sidebar height to fill the viewport vertically */
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 99;
+      transform: translateX(-100%); /* Hide the sidebar by default */
+      transition: transform 0.3s ease;
+      border-radius: 10px; /* Add border radius */
+      border: 1px solid #fff; /* Add border */
+    }
+
+    .sidebar.open {
+      transform: translateX(0); /* Show the sidebar when open class is added */
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      margin-top: 40px; /* Add margin to move menu items down */
+    }
+
+    .sidebar li {
+      margin-bottom: 10px;
+    }
+
+    .sidebar a {
+      text-decoration: none;
+      color: #fff; /* Set the link color to white */
+      display: block;
+      padding: 5px;
+      border-radius: 0.5rem; /* Add border radius */
+    }
+
+    .sidebar a:hover {
+      background-color: #ddd;
+    }
+
+    .menu-toggle {
+      display: block;
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 100;
+      cursor: pointer;
+      width: 40px; /* Increase the width */
+      height: 40px; /* Increase the height */
+    }
+
+    .menu-toggle span,
+    .menu-toggle span::before,
+    .menu-toggle span::after {
+      content: '';
+      display: block;
+      background-color: #fff;
+      height: 3px;
+      width: 100%; /* Set width to span the entire area */
+      transition: all 0.3s ease;
+      border-radius: 2px; /* Add border radius */
+    }
+
+    .menu-toggle span::before,
+    .menu-toggle span::after {
+      position: absolute;
+      left: 0;
+    }
+
+    .menu-toggle span::before {
+      top: -10px;
+    }
+
+    .menu-toggle span::after {
+      top: 10px;
+    }
+
+    .menu-toggle.open span {
+      background-color: transparent;
+    }
+
+    .menu-toggle.open span::before {
+      transform: translateY(10px) rotate(45deg);
+    }
+
+    .menu-toggle.open span::after {
+      transform: translateY(-10px) rotate(-45deg);
+    }
+
+    /* Image Styles */
+    .image-container-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center; /* Center the images */
+      align-items: flex-start;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      margin-left: 20px;
+      margin-right: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .image-container {
+      width: 20%; /* Adjust the width as desired */
+      margin-bottom: 20px; /* Increase the margin to space out the images */
+      margin-right: 3%; /* Add horizontal spacing between the images */
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .image-container.open {
+      width: 14%; /* Adjust the width when sidebar is open */
+    }
+
+    img.my-img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-width: 100%;
+      transition: all 300ms;
+      border-radius: 0.5rem; /* Add border radius */
+      cursor: pointer;
+      filter: grayscale(100%);
+    }
+
+    img.my-img:hover,
+    img.my-img.touch-hover {
+      filter: grayscale(0%);
+    }
+
+    .caption {
+      text-align: center;
+      margin-top: 5px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px;
+      color: #fff;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 8px;
+      border-radius: 0.5rem; /* Add border radius */
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .image-container:hover .caption,
+    .image-container.touch-hover .caption {
+      opacity: 1;
+    }
+
+    .clearfix::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    /* Clearfix for the sidebar */
+    .clearfix-sidebar::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    /* Clearfix for the image containers */
+    .clearfix-images::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    /* Container to wrap images and clear floats */
+    .image-container-wrap {
+      overflow: hidden;
+    }
+
+    /* Fix for image placement */
+    .image-container:nth-child(3n+1) {
+      clear: left;
+    }
+
+    .sidebar .subheading {
+      margin-top: 40px; /* Adjust the margin-top value to lower the menu heading */
+    }
+
+    .enlarged {
+        text-align: center;
+        width: 80%;
+        height: auto;
+        max-width: 80%;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        filter: grayscale(0%);
+        cursor: zoom-out;
+    }
+
+    .no-scroll {
+        overflow: hidden;
+    }
+
+    footer {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      color: #fff;
+      text-align: center;
+      margin: 0 auto;
+      max-width: 800px;
+      margin-top: 20px;
+    }
+    
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .footer-text {
+      margin: 5px;
+    }
+    footer {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      color: #fff;
+      text-align: center;
+      margin: 0 auto;
+      max-width: 800px;
+      margin-top: 20px;
+    }
+
+    .popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+  }
+
+  .popup img.enlarged {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    transition: 0.3ms;
+  }
+
+  .popup-close-btn {
+    color: #fff;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 40px;
+    cursor: pointer;
+    padding: 10px;
+  }
+    
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .footer-text {
+      margin: 5px;
+    }
+
+    /* Media queries for touch devices */
+    @media (pointer: coarse) {
+      .my-img {
+        filter: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="header">
+    <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white"><a href="portfolio" style="text-decoration: none;color:white;">KweHen</a></h1>
+    <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">This is some of my street photography from London.</p>
+    <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">If money wasn't a thing, I would travel the world and take pictures for the rest of my life.</p>
+  </section>
+
+  <div class="menu-toggle">
+    <span></span>
+  </div>
+
+  <div class="sidebar">
+    <h2 class="subheading">Menu</h2>
+    <ul>
+      <li><a href="portfolio">Home</a></li>
+      <li><a href="contact">Contact</a></li>
+      <li><a href="underconstruction">Fashion</a></li>
+      <li><a href="underconstruction">Street</a></li>
+      <li><a href="underconstruction">Birthday's</a></li>
+      <li><a href="underconstruction">Travel</a></li>
+      <li><a href="underconstruction">Modeling</a></li>
+      <li><a href="underconstruction">Extras</a></li>
+    </ul>
+  </div>
+
+  <div class="image-container-wrap">
+    <div class="image-container">
+        <img class="my-img" src="https://photos.kwehen.com/LandingPictures/IMG_2178.JPG?Expires=1722470400&Signature=UBJ6GShe0WtNuoaNWBXFM1F5eM5SXIS6nmCwCbQgk02Oc~Sn50GMRYI7iJGrR1H14UwYDJVU~5Q4TQDv2ZO1o7SB8kGVpu0EveCj459zc-23dkJuaR1pZ0QV00yHzsuDpEpKK5dtt9Owkluh-YIrFq-qCgP75KS0VwElKh-fBsgxZWMY~MhB3MzHmz34k2x6~~Df6d-GhqGj64mPXJMypRDK6zOSdhM2pZK9RoXm1xZpM29VumI0ECgh~j2USgIR5giDSScAw1aWvAQlA~IFMYOm5iTpvxm7t5ysazCNLo2Q1PugT-ozJa0gBnyu3sLKcLSz-OX7C6nmAWz9bCVpGw__&Key-Pair-Id=KJVIX9H6ZFSIS">
+    </div>
+    <div class="image-container">
+        <img class="my-img" src="https://photos.kwehen.com/London/IMG_2936.JPG?Expires=1722470400&Signature=yg81e6r-n6r20VK6rVHGqmUUcj9LMommkOrR-9yY0LkPtaRW1p8pWlfrai85pwAbKM5L0EHzImfe9zjCK-YD4gL4IOye8U9AWsvNu4dOAfC-1-SAM1sKh3eXZwaJdPrhfCM15VOyMtRdQxdVB1iYRWubmGixP8vFYLL-nZYkQIElIh5spK~KxWlxT0RZdzp8dvvlLiy4qCDGtWZfFORsQ8dHTRMkypLA0PLCDyVnHAwfrXp-mxzeNH~bM0gVVUZemhXOfABjPbCqgiSaQX6Ef~46HV0aH68Wr6c88etAvkQzmbOYxQ8LufBxzMt9v0~X7I-0iEMI42cfEMwkhSOAYw__&Key-Pair-Id=KJVIX9H6ZFSIS">
+    </div>
+    <div class="image-container">
+        <img class="my-img" src="https://photos.kwehen.com/London/IMG_2938.JPG?Expires=1722470400&Signature=oUG8wI8gOC8Fq~QK1lKxXd0Q-ZdyYXOOlpO3jartXXn9xdcH22BawnuCDJ7bnuTO7HhErBNBNoHI5o-HulBFNK5~CRPvf-xRt5xVgtwA4NchoiiibocRuxmYOviugMoWZfPyMPli5mAcFvWjk7HYR2lJiI7JkYulqOm~Q8VdeBtY3isu4kZPj3v1bAK6hykwYW6qHXSO6Pv5W2VjooXfHEM-xDERC4G0~FAZWysoBvftCzadRsVvs6uzHNYWe1~DevJqtM~8q96slfgaSpBQj0jYFwEYtt3vBjRFYQ6rEEIZ-D4q7HRdIUDguVeayPB~y6kv-x2ppbwVFlalUraiOw__&Key-Pair-Id=KJVIX9H6ZFSIS">
+    </div>
+    <div class="image-container">
+        <img class="my-img" src="https://photos.kwehen.com/London/IMG_2935.JPG?Expires=1722470400&Signature=DlMR2bSZvTPt-UZVb1iy3XKWr3nNOmB5Mg2bR3W27Feowjq5xp8etBQK35gUa0BLP38VxdRrcDnfTzMEUwJChtPuDSacmDDvhEz4XIsbYvReNWzQdou4NOM0kCQOmyMQR8l4XuXkDBfX4Z-G702S~58yDNwQJC1o-GZ-GlFnxXyqcM2Ty4a~O~QSUDJ5V63FIH0MJ5l5CDBnbUVPOQJN7fDojhiKBb4LRvAybmReuUttcArsQzD7rNUYv856Vqtm6e6LUuK8jy9Ft9mEA0xhbKyjWvRWjWx~MvaxtVW2S58XU2VLkN0GOC3o~XureQh0H5c~1TnSp1zds67G3FFazQ__&Key-Pair-Id=KJVIX9H6ZFSIS">
+    </div>
+    <div class="image-container">
+        <img class="my-img" src="https://photos.kwehen.com/London/IMG_2939.JPG?Expires=1722470400&Signature=Rssa66zrBFQJ9SWjmCzi~mKMVxdAX4zYjHTriOOKBrxgxpVJWIfv7WSH4xahD9M3K-FiAyh8yA6KUg-2cFXQIIy0jyjESYwKqF-iFZob2PpQt6OXkU38Ycb9QgsbdIjnGkecMobFr1bL9kUy0PInwPjIw7elBDrNtB~FNhGMPfOjyVt40yzp6q0t95pQEyJrFcntVRdXqlk1p37d3-Gagq7lhlhesveXq7LdSiXCWmAdzeLhRjbNqDsrsC0c0m6PPZtqqXbHv3EzXKs9owLftbnzca9GFkqreLdzMm4l~V89TJeuff~6~sGEVvi47TVyfHaR7Q-ssyRIJfRTvGNyUw__&Key-Pair-Id=KJVIX9H6ZFSIS">
+    </div>
+    <div class="image-container">
+        <img class="my-img" src="https://photos.kwehen.com/London/IMG_2937.JPG?Expires=1722470400&Signature=CY3wyI0CNzm~ynzs~ANt25k5sIq~NDur1qYW9kmLHJDffzaaU8DxrsXkOTkboHjiQ-8ay58OVG-mGhYM3jaX52D0Rs8-QAThNf0IYJ46xpdGRQ5qiEL7z49c9Bqndr-OP2JoHcobvEuIJ8x1UMf31SCMahG1OlU4xZDyy1mxgPyZRK5dBm7ucOeKIvWxbSxY8a2Z89V-JtCIw9zpnL8xsBSWNTQtEHErIhcqhYZ-tby6ZRTLaa8tkoXtN~tn5-KgZSAG0pndR9XRDKLUpH3xvIsPOiPJ07J94RiowINwC~iUZG3mIYch9WHjgzVVJnQWSjgI0p4oPUSE7~TsnDXMjw__&Key-Pair-Id=KJVIX9H6ZFSIS">
+    </div>
+    <div class="popup">
+      <span class="popup-close-btn">&times;</span>
+      <img class="enlarged" src="https://photos.kwehen.com/LandingPictures/IMG_2178.JPG?Expires=1722470400&Signature=UBJ6GShe0WtNuoaNWBXFM1F5eM5SXIS6nmCwCbQgk02Oc~Sn50GMRYI7iJGrR1H14UwYDJVU~5Q4TQDv2ZO1o7SB8kGVpu0EveCj459zc-23dkJuaR1pZ0QV00yHzsuDpEpKK5dtt9Owkluh-YIrFq-qCgP75KS0VwElKh-fBsgxZWMY~MhB3MzHmz34k2x6~~Df6d-GhqGj64mPXJMypRDK6zOSdhM2pZK9RoXm1xZpM29VumI0ECgh~j2USgIR5giDSScAw1aWvAQlA~IFMYOm5iTpvxm7t5ysazCNLo2Q1PugT-ozJa0gBnyu3sLKcLSz-OX7C6nmAWz9bCVpGw__&Key-Pair-Id=KJVIX9H6ZFSIS">
+    </div>
+  </div>
+  <footer>
+    <div class="footer-content">
+      <p class="footer-text">© 2023 Kamau Creations, LLC. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+  const thumbnails = document.querySelectorAll('.my-img');
+  const popup = document.querySelector('.popup');
+  const enlargedImage = document.querySelector('.enlarged');
+  const closeBtn = document.querySelector('.popup-close-btn');
+
+  thumbnails.forEach((thumbnail) => {
+    thumbnail.addEventListener('click', (event) => {
+      event.preventDefault();
+      const src = event.target.src;
+      enlargedImage.src = src;
+      popup.style.display = 'block';
+    });
+  });
+
+  closeBtn.addEventListener('click', () => {
+    popup.style.display = 'none';
+  });
+</script>
+<script>
+    // Add touch event handling for mobile devices
+    const imageContainers = document.querySelectorAll('.image-container');
+    imageContainers.forEach(function(container) {
+      container.addEventListener('touchstart', function() {
+        container.classList.add('touch-hover');
+      });
+      container.addEventListener('touchend', function() {
+        container.classList.remove('touch-hover');
+      });
+    });
+
+    // Make the hamburger menu persistent when scrolling
+    window.addEventListener('scroll', function() {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      if (scrollTop > 0) {
+        menuToggle.classList.add('fixed');
+      } else {
+        menuToggle.classList.remove('fixed');
+      }
+    });
+  </script>
+  <script>
+  const menuToggle = document.querySelector('.menu-toggle');
+  const sidebar = document.querySelector('.sidebar');
+  const imageContainerWrap = document.querySelector('.image-container-wrap');
+
+  menuToggle.addEventListener('click', function() {
+    menuToggle.classList.toggle('open');
+    sidebar.classList.toggle('open');
+    imageContainerWrap.classList.toggle('open');
+  });
+
+  imageContainerWrap.addEventListener('click', function() {
+    menuToggle.classList.remove('open');
+    sidebar.classList.remove('open');
+    imageContainerWrap.classList.remove('open');
+  });
+</script>
+</body>
+</html>
