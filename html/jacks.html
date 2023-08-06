@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>KweHen</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="icon" href="https://simpleicon.com/wp-content/uploads/roll-film.png">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+    /* Page Styles */
+    body {
+      background-color: #000;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Header Styles */
+    .header {
+      padding: 20px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 24px;
+      color: #fff; /* Set the text color to white */
+      text-align: center; /* Center the text */
+      margin: 0 auto; /* Center the header horizontally */
+      max-width: 800px; /* Set a maximum width for the header */
+    }
+
+    .header h1 {
+      margin-bottom: 10px;
+      font-size: 40px;
+      font-weight: bold;
+      line-height: 1;
+    }
+
+    .header p {
+      margin-bottom: 20px;
+      font-size: 18px;
+      font-weight: normal;
+      color: #aaa;
+    }
+
+    /* Sidebar Styles */
+    .sidebar {
+      width: 20%;
+      background-color: rgba(0, 0, 0, 0.7); /* Set the background-color to black with transparency */
+      float: left;
+      padding: 10px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px;
+      color: #fff; /* Set the text color to white */
+      margin-right: 5px; /* Add smaller right margin for sidebar */
+      height: calc(100vh - 40px); /* Set sidebar height to fill the viewport vertically */
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 99;
+      transform: translateX(-100%); /* Hide the sidebar by default */
+      transition: transform 0.3s ease;
+      border-radius: 10px; /* Add border radius */
+      border: 1px solid #fff; /* Add border */
+    }
+
+    .sidebar.open {
+      transform: translateX(0); /* Show the sidebar when open class is added */
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      margin-top: 40px; /* Add margin to move menu items down */
+    }
+
+    .sidebar li {
+      margin-bottom: 10px;
+    }
+
+    .sidebar a {
+      text-decoration: none;
+      color: #fff; /* Set the link color to white */
+      display: block;
+      padding: 5px;
+      border-radius: 0.5rem; /* Add border radius */
+    }
+
+    .sidebar a:hover {
+      background-color: #ddd;
+    }
+
+    .menu-toggle {
+      display: block;
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 100;
+      cursor: pointer;
+      width: 40px; /* Increase the width */
+      height: 40px; /* Increase the height */
+    }
+
+    .menu-toggle span,
+    .menu-toggle span::before,
+    .menu-toggle span::after {
+      content: '';
+      display: block;
+      background-color: #fff;
+      height: 3px;
+      width: 100%; /* Set width to span the entire area */
+      transition: all 0.3s ease;
+      border-radius: 2px; /* Add border radius */
+    }
+
+    .menu-toggle span::before,
+    .menu-toggle span::after {
+      position: absolute;
+      left: 0;
+    }
+
+    .menu-toggle span::before {
+      top: -10px;
+    }
+
+    .menu-toggle span::after {
+      top: 10px;
+    }
+
+    .menu-toggle.open span {
+      background-color: transparent;
+    }
+
+    .menu-toggle.open span::before {
+      transform: translateY(10px) rotate(45deg);
+    }
+
+    .menu-toggle.open span::after {
+      transform: translateY(-10px) rotate(-45deg);
+    }
+
+    /* Image Styles */
+    .image-container-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center; /* Center the images */
+      align-items: flex-start;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      margin-left: 20px;
+      margin-right: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .image-container {
+      width: 25%; /* Adjust the width as desired */
+      margin-bottom: 20px; /* Increase the margin to space out the images */
+      margin-right: 3%; /* Add horizontal spacing between the images */
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .image-container.open {
+      width: 14%; /* Adjust the width when sidebar is open */
+    }
+
+    img.my-img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-width: 100%;
+      transition: all 300ms;
+      border-radius: 0.5rem; /* Add border radius */
+      cursor: pointer;
+      filter: grayscale(100%);
+    }
+
+    img.my-img:hover,
+    img.my-img.touch-hover {
+      filter: grayscale(0%);
+    }
+
+    .caption {
+      text-align: center;
+      margin-top: 5px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px;
+      color: #fff;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 8px;
+      border-radius: 0.5rem; /* Add border radius */
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .image-container:hover .caption,
+    .image-container.touch-hover .caption {
+      opacity: 1;
+    }
+
+    .clearfix::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    /* Clearfix for the sidebar */
+    .clearfix-sidebar::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    /* Clearfix for the image containers */
+    .clearfix-images::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    /* Container to wrap images and clear floats */
+    .image-container-wrap {
+      overflow: hidden;
+    }
+
+    /* Fix for image placement */
+    .image-container:nth-child(3n+1) {
+      clear: left;
+    }
+
+    .sidebar .subheading {
+      margin-top: 40px; /* Adjust the margin-top value to lower the menu heading */
+    }
+
+    .enlarged {
+        text-align: center;
+        width: 80%;
+        height: auto;
+        max-width: 80%;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        filter: grayscale(0%);
+        cursor: zoom-out;
+    }
+
+    .no-scroll {
+        overflow: hidden;
+    }
+
+    footer {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      color: #fff;
+      text-align: center;
+      margin: 0 auto;
+      max-width: 800px;
+      margin-top: 20px;
+    }
+    
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .footer-text {
+      margin: 5px;
+    }
+    footer {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      color: #fff;
+      text-align: center;
+      margin: 0 auto;
+      max-width: 800px;
+      margin-top: 20px;
+    }
+
+    .popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+  }
+
+  .popup img.enlarged {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    transition: 0.3ms;
+  }
+
+  .popup-close-btn {
+    color: #fff;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 40px;
+    cursor: pointer;
+    padding: 10px;
+  }
+    
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .footer-text {
+      margin: 5px;
+    }
+
+    /* Media queries for touch devices */
+    @media (pointer: coarse) {
+      .my-img {
+        filter: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="header">
+    <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white"><a href="portfolio" style="text-decoration: none;color:white;">KweHen</a></h1>
+    <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">Welcome to Jacks and I taking on the forest.</p>
+    <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">I had blood running down my back after slipping and falling during this shoot. The price of doing business. Forest 1, KweHen 0.</p>
+  </section>
+
+  <div class="menu-toggle">
+    <span></span>
+  </div>
+
+  <div class="sidebar">
+    <h2 class="subheading">Menu</h2>
+    <ul>
+      <li><a href="portfolio">Home</a></li>
+      <li><a href="contact">Contact</a></li>
+      <li><a href="underconstruction">Fashion</a></li>
+      <li><a href="underconstruction">Street</a></li>
+      <li><a href="underconstruction">Birthday's</a></li>
+      <li><a href="underconstruction">Travel</a></li>
+      <li><a href="underconstruction">Modeling</a></li>
+      <li><a href="underconstruction">Individuals</a></li>
+    </ul>
+  </div>
+
+  <div class="image-container-wrap">
+    <div class="image-container">
+        <img class="my-img" src="https://photos.kwehen.com/LandingPictures/IMG_2172.JPG?Expires=1722470400&Signature=k9OubamLqh3EoQHez-XphAx6-EzAo5d2oJQX4NDFoV3j7C6fOFgNQ61V7OcNFszlT6n2lko1YhhGRv1deCJaaPrCiTtHh-E9SSkeQfGvijvngeEuELMyjHVmNv7yw6WPxY-cvv0VQu6JwRa-n-7lbm~Spqbe8~WLwFSPxPU9CimO5WNWsFoe8fEEW~0EDT7bWSLW3waE8he~GV6slTR9~kD4yae249nhyRlep7XPosNPL-W7jvmbAC6lhb0HAU1B4-lnAPgBtuCmyqyGPR-~4UP-Oc7xbdlI4yZLRZ-cNuK85ZarPFL07lBWS~Yn1jJGxpiUNkpt3Y8oNWMNuIZ7bQ__&Key-Pair-Id=KJVIX9H6ZFSIS">
+    </div>
+    <div class="image-container">
+        <img class="my-img" src="https://photos.kwehen.com/Jacks/IMG_2949.JPG?Expires=1722470400&Signature=NAb0LiA17-SeSgSEfkCcqCv7DW-QZDRC0nMpFhiIRpoS4MwFB7uWfu1fkWzX0f1r5tKkK69u5PxoE3QmCxS8CtkCehgUNPRZWhx3D28A84j4XuO2xUDvRq8Q3uMo5SdH2bkvw7KZxVSy-PzRu0KtmZlzgyxiOfIJOietqPcKhZlDTZw6A~mndHhix3fKzPge7cn2tGD52VXMPr5DLAlYIqdgCb3AjFOmO~Cmm4ZiFVDrXFhzSvSUoVFMY5GthR5fT4ukjl1Xpvy6RtxBkKZ6pwc7fBIeX8ty32rV5RyFSmueDdCbMADhhysJwymdubhZKONjBzLsz2j6fvX6IJfcyQ__&Key-Pair-Id=KJVIX9H6ZFSIS">
+    </div>
+    <div class="image-container">
+        <img class="my-img" src="https://photos.kwehen.com/Jacks/IMG_2950.JPG?Expires=1722470400&Signature=cOz0L1uuft3DApLn6ML-Mbd0l3eieuILtyj1sNMOlI0VwWbKIKtykSoaJKw4xd6O9VymUNwC9BnKkCn6KKyS5BPqWiIbayUtq3BP3WQRLJM~uvHlOPvXqQLoCo1jmWcXsi7C91dN4fxpcBcL0Y-ErnfzCSXgosimVaYRs~l0NYHalxPeWqYop9yNRRPdO6Q6-38gLNQonGWLB2kyF4prYj2dpokA2xnF6RUOiUk4HpkiXRiYdtEeywZsk-HniZEKED4~3rvS0n75Vj4CvYKW0T~bBy6FMOACh4ZJyzGWkSAIrlTKAa71Gl-6lKBn2Z6iZv70~JGA4o8bgAU5gz1ydA__&Key-Pair-Id=KJVIX9H6ZFSIS">
+    </div>
+    <div class="image-container">
+        <img class="my-img" src="https://photos.kwehen.com/Jacks/IMG_2951.JPG?Expires=1722470400&Signature=swlwTgLzGKCBnwYTxngBFl3iGBcvO4eEnhAs3hhPhQ7IVARqIAAyq7Ab47S~KUm9NhZeKZ8dqAn2pN8SrrUF5vD~Op8DO10Y4Vq7OFBBM6noXhfuc0r3I84r~S7Nu6VPekli6xn7d~Lcdm4PQ~rqu4frIdNcaPe079US75tGDevxEFs1UJOBOiuJIJcf-WN1wLPsBIXESI3T6MmBoVHSw03mgWbpKcny-gOXHuY0aearnDbclrnclAolmzlrDHTfdhkHg8sRsmeo4LCKJ9suufru1lhueFJDvu-Vr1U32pIjOuMQk3IsFGjYKtP~QN6sjTMkVdG2S-Iz7Z7TFs4ekA__&Key-Pair-Id=KJVIX9H6ZFSIS">
+    </div>
+    <div class="image-container">
+        <img class="my-img" src="https://photos.kwehen.com/Jacks/IMG_2952.JPG?Expires=1722470400&Signature=mOB-qPn-KHovU4eWVYl6b7lHQvUgDh8iegk7ajYaslNQanJnh3hBRogxigxoUX-yCIEy16UD~Y9F2H28U7u-J0ttc0mvZkUKQclkcyyZ7ynMetrsp0jDB9iLfSE01OHdYqK7kWsd3hrlTconq3X8VL-bqlEsX2ydni7cqIbVpbVXgwIMjpSi0l7vUfXlLju2W-~sE35hfNnI9DOaL9zzTkoCk-QwoSh9wQhOSvFmCNgjDCc9VTen2ix8M7Kr26TdUErc6WBDG32X20aI5vEugqh1LKoXklrGGnDZwhF5MytPaYD18CmrMe9ynAp-N74TYcXQbsemJs6B8v6RN~As0w__&Key-Pair-Id=KJVIX9H6ZFSIS">
+    </div>
+    <div class="popup">
+      <span class="popup-close-btn">&times;</span>
+      <img class="enlarged" src="https://photos.kwehen.com/LandingPictures/IMG_2172.JPG?Expires=1722470400&Signature=k9OubamLqh3EoQHez-XphAx6-EzAo5d2oJQX4NDFoV3j7C6fOFgNQ61V7OcNFszlT6n2lko1YhhGRv1deCJaaPrCiTtHh-E9SSkeQfGvijvngeEuELMyjHVmNv7yw6WPxY-cvv0VQu6JwRa-n-7lbm~Spqbe8~WLwFSPxPU9CimO5WNWsFoe8fEEW~0EDT7bWSLW3waE8he~GV6slTR9~kD4yae249nhyRlep7XPosNPL-W7jvmbAC6lhb0HAU1B4-lnAPgBtuCmyqyGPR-~4UP-Oc7xbdlI4yZLRZ-cNuK85ZarPFL07lBWS~Yn1jJGxpiUNkpt3Y8oNWMNuIZ7bQ__&Key-Pair-Id=KJVIX9H6ZFSIS">
+    </div>
+  </div>
+  <footer>
+    <div class="footer-content">
+      <p class="footer-text">© 2023 Kamau Creations, LLC. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+  const thumbnails = document.querySelectorAll('.my-img');
+  const popup = document.querySelector('.popup');
+  const enlargedImage = document.querySelector('.enlarged');
+  const closeBtn = document.querySelector('.popup-close-btn');
+
+  thumbnails.forEach((thumbnail) => {
+    thumbnail.addEventListener('click', (event) => {
+      event.preventDefault();
+      const src = event.target.src;
+      enlargedImage.src = src;
+      popup.style.display = 'block';
+    });
+  });
+
+  closeBtn.addEventListener('click', () => {
+    popup.style.display = 'none';
+  });
+</script>
+<script>
+    // Add touch event handling for mobile devices
+    const imageContainers = document.querySelectorAll('.image-container');
+    imageContainers.forEach(function(container) {
+      container.addEventListener('touchstart', function() {
+        container.classList.add('touch-hover');
+      });
+      container.addEventListener('touchend', function() {
+        container.classList.remove('touch-hover');
+      });
+    });
+
+    // Make the hamburger menu persistent when scrolling
+    window.addEventListener('scroll', function() {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      if (scrollTop > 0) {
+        menuToggle.classList.add('fixed');
+      } else {
+        menuToggle.classList.remove('fixed');
+      }
+    });
+  </script>
+  <script>
+  const menuToggle = document.querySelector('.menu-toggle');
+  const sidebar = document.querySelector('.sidebar');
+  const imageContainerWrap = document.querySelector('.image-container-wrap');
+
+  menuToggle.addEventListener('click', function() {
+    menuToggle.classList.toggle('open');
+    sidebar.classList.toggle('open');
+    imageContainerWrap.classList.toggle('open');
+  });
+
+  imageContainerWrap.addEventListener('click', function() {
+    menuToggle.classList.remove('open');
+    sidebar.classList.remove('open');
+    imageContainerWrap.classList.remove('open');
+  });
+</script>
+</body>
+</html>
