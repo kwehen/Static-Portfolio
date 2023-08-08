@@ -1,7 +1,8 @@
-import requests 
+import os
+import requests
 import boto3
-from botocore.exceptions import ClientError
 import time
+from botocore.exceptions import ClientError
 
 base_url = "https://website.com/"
 pages = {"portfolio", "contact", "jondoe", "london", "graduation", "pelondon", "jacks", "rich", "nyc", "chamberlain", "idk"}
@@ -11,15 +12,10 @@ headers = {
 
 SENDER = "email@email.com"
 RECIPIENT = "email@email.com"
-# CONFIGURATION_SET = "ConfigSet"
 AWS_REGION = "us-east-1"
 SUBJECT = "Website Health Check"
 
-
-# response = requests.get(base_url, verify=False, headers=headers)
-# code = response.status_code
-
-while True:
+def lambda_handler(event, context):
     for page in pages:
         response = requests.get(f'{base_url}{page}', headers=headers)
         code = response.status_code
@@ -48,13 +44,9 @@ while True:
                         },
                     },
                     Source=SENDER,
-                    # ConfigurationSetName=CONFIGURATION_SET,
                 )
             except ClientError as e:
                 print(e.response['Error']['Message'])
             else:
-                print("Email sent! Message ID:"),
+                print("Email sent! Message ID:")
                 print(response['MessageId'])
-    time.sleep(36000)
-
-# Send SES email for the else statement. This also needs reformatted into a lambda function. 
