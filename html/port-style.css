@@ -1,0 +1,256 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+/* Page Styles */
+body {
+  background-color: #000;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header Styles */
+.header {
+  padding: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 24px;
+  color: #fff; /* Set the text color to white */
+  text-align: center; /* Center the text */
+  margin: 0 auto; /* Center the header horizontally */
+  max-width: 800px; /* Set a maximum width for the header */
+}
+
+.header h1 {
+  margin-bottom: 10px;
+  font-size: 40px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.header p {
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: normal;
+  color: #aaa;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  width: 20%;
+  background-color: rgba(0, 0, 0, 0.7); /* Set the background-color to black with transparency */
+  float: left;
+  padding: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  color: #fff; /* Set the text color to white */
+  margin-right: 5px; /* Add smaller right margin for sidebar */
+  height: calc(100vh - 40px); /* Set sidebar height to fill the viewport vertically */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  transform: translateX(-100%); /* Hide the sidebar by default */
+  transition: transform 0.3s ease;
+  border-radius: 10px; /* Add border radius */
+  border: 1px solid #fff; /* Add border */
+}
+
+.sidebar.open {
+  transform: translateX(0); /* Show the sidebar when open class is added */
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 40px; /* Add margin to move menu items down */
+}
+
+.sidebar li {
+  margin-bottom: 10px;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: #fff; /* Set the link color to white */
+  display: block;
+  padding: 5px;
+  border-radius: 0.5rem; /* Add border radius */
+}
+
+.sidebar a:hover {
+  background-color: #ddd;
+}
+
+.menu-toggle {
+  display: block;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+  cursor: pointer;
+  width: 40px; /* Increase the width */
+  height: 40px; /* Increase the height */
+}
+
+.menu-toggle span,
+.menu-toggle span::before,
+.menu-toggle span::after {
+  content: '';
+  display: block;
+  background-color: #fff;
+  height: 3px;
+  width: 100%; /* Set width to span the entire area */
+  transition: all 0.3s ease;
+  border-radius: 2px; /* Add border radius */
+}
+
+.menu-toggle span::before,
+.menu-toggle span::after {
+  position: absolute;
+  left: 0;
+}
+
+.menu-toggle span::before {
+  top: -10px;
+}
+
+.menu-toggle span::after {
+  top: 10px;
+}
+
+.menu-toggle.open span {
+  background-color: transparent;
+}
+
+.menu-toggle.open span::before {
+  transform: translateY(10px) rotate(45deg);
+}
+
+.menu-toggle.open span::after {
+  transform: translateY(-10px) rotate(-45deg);
+}
+
+/* Image Styles */
+.image-container-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Center the images */
+  align-items: flex-start;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  transition: all 0.3s ease;
+}
+
+.image-container {
+  width: 20%; /* Adjust the width as desired */
+  margin-bottom: 20px; /* Increase the margin to space out the images */
+  margin-right: 3%; /* Add horizontal spacing between the images */
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.image-container.open {
+  width: 14%; /* Adjust the width when sidebar is open */
+}
+
+img.my-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  transition: all 300ms;
+  border-radius: 0.5rem; /* Add border radius */
+  cursor: pointer;
+  filter: grayscale(100%);
+}
+
+img.my-img:hover,
+img.my-img.touch-hover {
+  filter: grayscale(0%);
+}
+
+.caption {
+  text-align: center;
+  margin-top: 5px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 8px;
+  border-radius: 0.5rem; /* Add border radius */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.image-container:hover .caption,
+.image-container.touch-hover .caption {
+  opacity: 1;
+}
+
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Clearfix for the sidebar */
+.clearfix-sidebar::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Clearfix for the image containers */
+.clearfix-images::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Container to wrap images and clear floats */
+.image-container-wrap {
+  overflow: hidden;
+}
+
+/* Fix for image placement */
+.image-container:nth-child(3n+1) {
+  clear: left;
+}
+
+    footer {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: #fff;
+  text-align: center;
+  margin: 0 auto;
+  max-width: 800px;
+  margin-top: 20px;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer-text {
+  margin: 5px;
+}
+
+.sidebar .subheading {
+  margin-top: 40px; /* Adjust the margin-top value to lower the menu heading */
+}
+
+/* Media queries for touch devices */
+@media (pointer: coarse) {
+  .my-img {
+    filter: none;
+  }
+}
