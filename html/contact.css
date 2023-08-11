@@ -1,0 +1,292 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+/* Page Styles */
+body {
+    background-color: #000;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  /* Form Styles */
+  .card {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+  .card h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  .form-control {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  font-family: 'Poppins', sans-serif;
+  }
+
+  .form-control:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+
+  .form-group small {
+  display: block;
+  margin-top: 0.25rem;
+  color: #6c757d;
+  font-family: 'Poppins', sans-serif;
+}
+
+.btn-primary {
+  display: inline-block;
+  font-weight: 400;
+  color: #fff;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  background-color: #007bff;
+  border: 1px solid #007bff;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+  box-shadow 0.15s ease-in-out;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #0069d9;
+  border-color: #0062cc;
+}
+
+ .form-group {
+    margin-bottom: 20px; /* Add margin-bottom for spacing */
+  }
+
+  .form-group label {
+    color: #aaa;
+  }
+
+  .form-group .form-control {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: #fff;
+    color: #fff;
+  }
+
+  .form-group .form-control::placeholder {
+    color: #ccc;
+  }
+
+  .form-group small {
+    color: #aaa;
+  }
+
+  .btn-primary {
+    background-color: #1e90ff;
+    border-color: #1e90ff;
+  }
+
+  .btn-primary:hover {
+    background-color: #0069d9;
+    border-color: #0062cc;
+  }
+
+  #response {
+    margin-top: 20px;
+    color: #fff;
+  }
+
+/* Header Styles */
+.header {
+  padding: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 24px;
+  color: #fff; /* Set the text color to white */
+  text-align: center; /* Center the text */
+  margin: 0 auto; /* Center the header horizontally */
+  max-width: 800px; /* Set a maximum width for the header */
+}
+
+.header h1 {
+  margin-bottom: 10px;
+  font-size: 40px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.header p {
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: normal;
+  color: #aaa;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  width: 20%;
+  background-color: rgba(0, 0, 0, 0.7); /* Set the background-color to black with transparency */
+  float: left;
+  padding: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  color: #fff; /* Set the text color to white */
+  margin-right: 5px; /* Add smaller right margin for sidebar */
+  height: calc(100vh - 40px); /* Set sidebar height to fill the viewport vertically */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  transform: translateX(-100%); /* Hide the sidebar by default */
+  transition: transform 0.3s ease;
+  border-radius: 10px; /* Add border radius */
+  border: 1px solid #fff; /* Add border */
+}
+
+.sidebar.open {
+  transform: translateX(0); /* Show the sidebar when open class is added */
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 40px; /* Add margin to move menu items down */
+}
+
+.sidebar li {
+  margin-bottom: 10px;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: #fff; /* Set the link color to white */
+  display: block;
+  padding: 5px;
+  border-radius: 0.5rem; /* Add border radius */
+}
+
+.sidebar a:hover {
+  background-color: #ddd;
+}
+
+.menu-toggle {
+  display: block;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+  cursor: pointer;
+  width: 40px; /* Increase the width */
+  height: 40px; /* Increase the height */
+}
+
+.menu-toggle span,
+.menu-toggle span::before,
+.menu-toggle span::after {
+  content: '';
+  display: block;
+  background-color: #fff;
+  height: 3px;
+  width: 100%; /* Set width to span the entire area */
+  transition: all 0.3s ease;
+  border-radius: 2px; /* Add border radius */
+}
+
+.menu-toggle span::before,
+.menu-toggle span::after {
+  position: absolute;
+  left: 0;
+}
+
+.menu-toggle span::before {
+  top: -10px;
+}
+
+.menu-toggle span::after {
+  top: 10px;
+}
+
+.menu-toggle.open span {
+  background-color: transparent;
+}
+
+.menu-toggle.open span::before {
+  transform: translateY(10px) rotate(45deg);
+}
+
+.menu-toggle.open span::after {
+  transform: translateY(-10px) rotate(-45deg);
+}
+
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Clearfix for the sidebar */
+.clearfix-sidebar::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+footer {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: #fff;
+  text-align: center;
+  margin: 0 auto;
+  max-width: 800px;
+  margin-top: 20px;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer-text {
+  margin: 5px;
+}
+
+.sidebar .subheading {
+  margin-top: 40px; /* Adjust the margin-top value to lower the menu heading */
+}
+
+/* Media queries for touch devices */
+@media (pointer: coarse) {
+  .my-img {
+    filter: none;
+  }
+}

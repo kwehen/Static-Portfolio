@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>KweHen</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="icon" href="https://simpleicon.com/wp-content/uploads/roll-film.png">
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
     /* Page Styles */
     body {
@@ -329,59 +321,3 @@
         filter: none;
       }
     }
-  </style>
-</head>
-<body>
-  <section class="header">
-    <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white"><a href="portfolio" style="text-decoration: none;color:white;">KweHen</a></h1>
-    <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">Welcome to Jacks and I taking on the forest.</p>
-    <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">I had blood running down my back after slipping and falling during this shoot. The price of doing business. Forest 1, KweHen 0.</p>
-  </section>
-
-  <div class="menu-toggle">
-    <span></span>
-  </div>
-
-  <div class="sidebar">
-    <h2 class="subheading">Menu</h2>
-    <ul>
-      <li><a href="portfolio">Home</a></li>
-      <li><a href="contact">Contact</a></li>
-      <li><a href="underconstruction">Fashion</a></li>
-      <li><a href="underconstruction">Street</a></li>
-      <li><a href="underconstruction">Birthday's</a></li>
-      <li><a href="underconstruction">Travel</a></li>
-      <li><a href="underconstruction">Modeling</a></li>
-      <li><a href="underconstruction">Individuals</a></li>
-    </ul>
-  </div>
-
-  <div class="image-container-wrap">
-    <div class="image-container">
-        <img class="my-img" src="https://photos.kwehen.com/LandingPictures/IMG_2172.JPG?Expires=1722470400&Signature=k9OubamLqh3EoQHez-XphAx6-EzAo5d2oJQX4NDFoV3j7C6fOFgNQ61V7OcNFszlT6n2lko1YhhGRv1deCJaaPrCiTtHh-E9SSkeQfGvijvngeEuELMyjHVmNv7yw6WPxY-cvv0VQu6JwRa-n-7lbm~Spqbe8~WLwFSPxPU9CimO5WNWsFoe8fEEW~0EDT7bWSLW3waE8he~GV6slTR9~kD4yae249nhyRlep7XPosNPL-W7jvmbAC6lhb0HAU1B4-lnAPgBtuCmyqyGPR-~4UP-Oc7xbdlI4yZLRZ-cNuK85ZarPFL07lBWS~Yn1jJGxpiUNkpt3Y8oNWMNuIZ7bQ__&Key-Pair-Id=KJVIX9H6ZFSIS">
-    </div>
-    <div class="image-container">
-        <img class="my-img" src="https://photos.kwehen.com/Jacks/IMG_2949.JPG?Expires=1722470400&Signature=NAb0LiA17-SeSgSEfkCcqCv7DW-QZDRC0nMpFhiIRpoS4MwFB7uWfu1fkWzX0f1r5tKkK69u5PxoE3QmCxS8CtkCehgUNPRZWhx3D28A84j4XuO2xUDvRq8Q3uMo5SdH2bkvw7KZxVSy-PzRu0KtmZlzgyxiOfIJOietqPcKhZlDTZw6A~mndHhix3fKzPge7cn2tGD52VXMPr5DLAlYIqdgCb3AjFOmO~Cmm4ZiFVDrXFhzSvSUoVFMY5GthR5fT4ukjl1Xpvy6RtxBkKZ6pwc7fBIeX8ty32rV5RyFSmueDdCbMADhhysJwymdubhZKONjBzLsz2j6fvX6IJfcyQ__&Key-Pair-Id=KJVIX9H6ZFSIS">
-    </div>
-    <div class="image-container">
-        <img class="my-img" src="https://photos.kwehen.com/Jacks/IMG_2950.JPG?Expires=1722470400&Signature=cOz0L1uuft3DApLn6ML-Mbd0l3eieuILtyj1sNMOlI0VwWbKIKtykSoaJKw4xd6O9VymUNwC9BnKkCn6KKyS5BPqWiIbayUtq3BP3WQRLJM~uvHlOPvXqQLoCo1jmWcXsi7C91dN4fxpcBcL0Y-ErnfzCSXgosimVaYRs~l0NYHalxPeWqYop9yNRRPdO6Q6-38gLNQonGWLB2kyF4prYj2dpokA2xnF6RUOiUk4HpkiXRiYdtEeywZsk-HniZEKED4~3rvS0n75Vj4CvYKW0T~bBy6FMOACh4ZJyzGWkSAIrlTKAa71Gl-6lKBn2Z6iZv70~JGA4o8bgAU5gz1ydA__&Key-Pair-Id=KJVIX9H6ZFSIS">
-    </div>
-    <div class="image-container">
-        <img class="my-img" src="https://photos.kwehen.com/Jacks/IMG_2951.JPG?Expires=1722470400&Signature=swlwTgLzGKCBnwYTxngBFl3iGBcvO4eEnhAs3hhPhQ7IVARqIAAyq7Ab47S~KUm9NhZeKZ8dqAn2pN8SrrUF5vD~Op8DO10Y4Vq7OFBBM6noXhfuc0r3I84r~S7Nu6VPekli6xn7d~Lcdm4PQ~rqu4frIdNcaPe079US75tGDevxEFs1UJOBOiuJIJcf-WN1wLPsBIXESI3T6MmBoVHSw03mgWbpKcny-gOXHuY0aearnDbclrnclAolmzlrDHTfdhkHg8sRsmeo4LCKJ9suufru1lhueFJDvu-Vr1U32pIjOuMQk3IsFGjYKtP~QN6sjTMkVdG2S-Iz7Z7TFs4ekA__&Key-Pair-Id=KJVIX9H6ZFSIS">
-    </div>
-    <div class="image-container">
-        <img class="my-img" src="https://photos.kwehen.com/Jacks/IMG_2952.JPG?Expires=1722470400&Signature=mOB-qPn-KHovU4eWVYl6b7lHQvUgDh8iegk7ajYaslNQanJnh3hBRogxigxoUX-yCIEy16UD~Y9F2H28U7u-J0ttc0mvZkUKQclkcyyZ7ynMetrsp0jDB9iLfSE01OHdYqK7kWsd3hrlTconq3X8VL-bqlEsX2ydni7cqIbVpbVXgwIMjpSi0l7vUfXlLju2W-~sE35hfNnI9DOaL9zzTkoCk-QwoSh9wQhOSvFmCNgjDCc9VTen2ix8M7Kr26TdUErc6WBDG32X20aI5vEugqh1LKoXklrGGnDZwhF5MytPaYD18CmrMe9ynAp-N74TYcXQbsemJs6B8v6RN~As0w__&Key-Pair-Id=KJVIX9H6ZFSIS">
-    </div>
-    <div class="popup">
-      <span class="popup-close-btn">&times;</span>
-      <img class="enlarged" src="https://photos.kwehen.com/LandingPictures/IMG_2172.JPG?Expires=1722470400&Signature=k9OubamLqh3EoQHez-XphAx6-EzAo5d2oJQX4NDFoV3j7C6fOFgNQ61V7OcNFszlT6n2lko1YhhGRv1deCJaaPrCiTtHh-E9SSkeQfGvijvngeEuELMyjHVmNv7yw6WPxY-cvv0VQu6JwRa-n-7lbm~Spqbe8~WLwFSPxPU9CimO5WNWsFoe8fEEW~0EDT7bWSLW3waE8he~GV6slTR9~kD4yae249nhyRlep7XPosNPL-W7jvmbAC6lhb0HAU1B4-lnAPgBtuCmyqyGPR-~4UP-Oc7xbdlI4yZLRZ-cNuK85ZarPFL07lBWS~Yn1jJGxpiUNkpt3Y8oNWMNuIZ7bQ__&Key-Pair-Id=KJVIX9H6ZFSIS">
-    </div>
-  </div>
-  <footer>
-    <div class="footer-content">
-      <p class="footer-text">© 2023 Kamau Creations, LLC. All rights reserved.</p>
-    </div>
-  </footer>
-<script type="text/javascript" src="script.js"></script>
-</body>
-</html>
