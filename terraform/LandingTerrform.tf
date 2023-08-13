@@ -13,10 +13,10 @@ resource "aws_s3_bucket_ownership_controls" "kwehen-controls" {
 
 resource "aws_s3_bucket_public_access_block" "kwehen-access-block" {
   bucket                      = aws_s3_bucket.kwehen1.id
-  block_public_acls           = false
-  block_public_policy         = false
-  ignore_public_acls          = false
-  restrict_public_buckets     = false
+  block_public_acls           = true
+  block_public_policy         = true
+  ignore_public_acls          = true
+  restrict_public_buckets     = true
 }
 
 resource "aws_s3_object" "index" {
@@ -87,6 +87,62 @@ resource "aws_s3_object" "Jacks" {
   key = "jacks"
   source = "/Users/kwehen/Desktop/AWS/Static Portfolio/jacks.html"
   content_type = "text/html"
+}
+
+resource "aws_s3_object" "Graduation" {
+  bucket = aws_s3_bucket.kwehen1.id
+  key = "graduation"
+  source = "/Users/kwehen/Desktop/AWS/Static Portfolio/graduation.html"
+  content_type = "text/html"
+}
+
+resource "aws_s3_object" "Rich" {
+  bucket = aws_s3_bucket.kwehen1.id
+  key = "rich"
+  source = "/Users/kwehen/Desktop/AWS/Static Portfolio/rich.html"
+  content_type = "text/html"
+}
+
+resource "aws_s3_object" "NYC" {
+  bucket = aws_s3_bucket.kwehen1.id
+  key = "nyc"
+  source = "/Users/kwehen/Desktop/AWS/Static Portfolio/nyc.html"
+  content_type = "text/html"
+}
+
+resource "aws_s3_object" "contact-css" {
+  bucket = aws_s3_bucket.kwehen1.id
+  key = "contact.css"
+  source = "/Users/kwehen/Desktop/AWS/Static Portfolio/contact.css"
+  content_type = "text/css"
+}
+
+resource "aws_s3_object" "stylesheet-css" {
+  bucket = aws_s3_bucket.kwehen1.id
+  key = "stylesheet.css"
+  source = "/Users/kwehen/Desktop/AWS/Static Portfolio/stylesheet.css"
+  content_type = "text/css"
+}
+
+resource "aws_s3_object" "port-style-css" {
+  bucket = aws_s3_bucket.kwehen1.id
+  key = "port-style.css"
+  source = "/Users/kwehen/Desktop/AWS/Static Portfolio/port-style.css"
+  content_type = "text/css"
+}
+
+resource "aws_s3_object" "script-js" {
+  bucket = aws_s3_bucket.kwehen1.id
+  key = "script.js"
+  source = "/Users/kwehen/Desktop/AWS/Static Portfolio/script.js"
+  content_type = "text/javascript"
+}
+
+resource "aws_s3_object" "portfolio-script-js" {
+  bucket = aws_s3_bucket.kwehen1.id
+  key = "portfolio-script.js"
+  source = "/Users/kwehen/Desktop/AWS/Static Portfolio/portfolio-script.js"
+  content_type = "text/javascript"
 }
 
 resource "aws_s3_bucket_policy" "kwehen-policy" {
@@ -188,6 +244,23 @@ resource "aws_cloudfront_function" "CF-Redirect" {
   code = file("/Users/kwehen/Desktop/AWS/Static Portfolio/cf-function.js")
 }
 
+resource "aws_cloudfront_response_headers_policy" "kwehen-cf-response" {
+  name = "kwehen-security-headers"
+  security_headers_config {
+    frame_options {
+      frame_option = "DENY"
+      override = true
+    }
+
+    strict_transport_security {
+      access_control_max_age_sec = "63072000"
+      include_subdomains = true
+      preload = true
+      override = true
+    }
+  }
+}
+
 resource "aws_cloudfront_distribution" "kwehen-cf" {
   origin {
     domain_name = aws_s3_bucket.kwehen1.bucket_regional_domain_name
@@ -207,6 +280,8 @@ resource "aws_cloudfront_distribution" "kwehen-cf" {
     viewer_protocol_policy = "redirect-to-https"
     cached_methods = ["GET", "HEAD"]
     target_origin_id = local.s3_origin_id
+
+    response_headers_policy_id = aws_cloudfront_response_headers_policy.kwehen-cf-response.id
 
     function_association {
     event_type = "viewer-request"
