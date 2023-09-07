@@ -5,7 +5,7 @@ import time
 from botocore.exceptions import ClientError
 
 base_url = "https://website.com/"
-pages = {"portfolio", "contact", "jondoe", "london", "graduation", "pelondon", "jacks", "rich", "nyc", "chamberlain", "idk"}
+pages = {"portfolio", "contact", "jondoe", "london", "graduation", "pelondon", "jacks", "rich", "nyc", "chamberlain", "about", "modeling", "brands", "street", "individuals", "duce", "b2tm", "peatl", "waterfall"}
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0"
 }
@@ -22,7 +22,7 @@ def lambda_handler(event, context):
         if code == 200:
             print(f"{base_url}{page} is healthy")
         else:
-            print(f"{base_url}{page} is not responding properly, login and remediate error.")
+            print(f"{base_url}{page} is not responding properly, please remediate the error.")
             try:
                 client = boto3.client('ses', region_name=AWS_REGION)
                 response = client.send_email(
@@ -35,7 +35,7 @@ def lambda_handler(event, context):
                         'Body': {
                             'Text': {
                                 'Charset': 'UTF-8',
-                                'Data': f"{base_url}{page} is not responding properly, please remediate error.",
+                                'Data': f"{base_url}{page} is not responding properly, please remediate the error.",
                             },
                         },
                         'Subject': {
