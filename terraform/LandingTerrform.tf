@@ -166,6 +166,13 @@ resource "aws_s3_object" "Individuals" {
   content_type = "text/html"
 }
 
+resource "aws_s3_object" "About" {
+  bucket = aws_s3_bucket.kwehen1.id
+  key = "about"
+  source = "/Users/kwehen/Desktop/AWS/Static Portfolio/about.html"
+  content_type = "text/html"
+}
+
 resource "aws_s3_object" "contact-css" {
   bucket       = aws_s3_bucket.kwehen1.id
   key          = "contact.css"
